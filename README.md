@@ -1,24 +1,9 @@
-# README
+# エレベーターピッチ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
 
-* Ruby version
+#　タスク管理
+https://trello.com/b/TiG9eO4L/%E3%83%9C%E3%83%88%E3%83%AB%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8
 
-* System dependencies
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
