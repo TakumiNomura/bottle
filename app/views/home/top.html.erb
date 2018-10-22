@@ -1,2 +1,31 @@
-<h1>Home#top</h1>
-<p>Find me in app/views/home/top.html.erb</p>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Bottle</title>
+  </head>
+  <body>
+    <!-- ヘッダー -->
+    <header>
+      <div class="header-logo">
+        <a href="/">Bottle</a>
+      </div>
+      <div class="mypage">
+      </div>
+    </header>
+    <!-- 貯金額の表示・入力 -->
+    <div class="contents-wrap">
+        <p class="title">メッセージ</p>
+
+        <%= form_for("table_name") do |f| %>
+            <%= f.text_field :field_name, :class => "textbox", :placeholder => "何を書こうかな…", :pattern => "[\u3040-\u309f]+$" %>
+        
+            <%= image_submit_tag "send.png", :id => "send" %>
+        <% end %>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+    </footer>
+  </body>
+</html>
