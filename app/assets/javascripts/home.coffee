@@ -19,3 +19,10 @@ document.addEventListener 'DOMContentLoaded', (->
     return
   return
 ), false
+
+$(document).on 'click touchend', (e) ->
+  $('#send').click ->
+    $('input#table_name_field_name').val("")
+    alert ("メッセージを放流しました。")
+    false
+  return
