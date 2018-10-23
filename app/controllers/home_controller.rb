@@ -4,4 +4,10 @@ class HomeController < ApplicationController
 
   def main
   end
+
+  def create
+    @post = Post.new(message:params[:message])
+    @post.save
+  end
+
 end
