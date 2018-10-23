@@ -55,7 +55,7 @@ body{
     text-align: center;
 }
 .contents-wrap .textbox{
-    text-align: right;
+    text-align: left;
     box-sizing: border-box;
     width: 100%;
     height: 70px;
@@ -75,6 +75,12 @@ body{
     top: 50%;
     left: 88%;
     transform: translateY(-50%);
+    filter: invert(100%);
+    transition: .4s;
+}
+
+.contents-wrap form img:hover, input#send:hover{
+    opacity: 0.7;
 }
 
 /* テキストボックス内の初期テキスト色 */
