@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Bottle</title>
   </head>
+  
   <body>
     <!-- ヘッダー -->
     <header>
@@ -19,7 +20,7 @@
 
         <%= form_for("table_name") do |f| %>
             <%= f.text_field :field_name, :class => "textbox", :placeholder => "何を書こうかな…", :pattern => "[\u3040-\u309f]+$" %>
-        
+
             <%= image_submit_tag "send.png", :id => "send" %>
         <% end %>
     </div>
