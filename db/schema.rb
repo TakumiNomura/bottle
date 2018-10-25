@@ -14,7 +14,9 @@ ActiveRecord::Schema.define(version: 2018_10_22_073716) do
 
   create_table "posts", force: :cascade do |t|
     t.text "message"
-    t.integer "uid"
+    t.integer "src_id"
+    t.integer "dst_id"
+    t.boolean "read_flag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
