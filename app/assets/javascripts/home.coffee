@@ -2,29 +2,14 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-'''
-input = undefined
-input = []
-document.addEventListener 'DOMContentLoaded', (->
-  document.getElementById('message').addEventListener 'keyup', (e) ->
-    tmp = undefined
-    tmp = []
-    @value.split('').forEach (item, i) ->
-      if item.match(/^[\u3040-\u309f]+$/)
-        tmp.push item
-      return
-    if tmp.length > 0
-      @value = tmp.join('')
-    else
-      @value = ''
-    return
+# メッセージを送った時に成功 or 失敗
+$(document).on 'ajax:success', '#message_form', (e) ->
+  console.log e.detail[0]
+  $('textarea#message').val ''
+  alert 'メッセージを海に流しました...'
   return
-), false
-'''
-
-$(document).on 'click touchend', (e) ->
-  $('#send').click ->
-    $('input#message').val("")
-    alert ("メッセージを放流しました。")
-    false
+$(document).on 'ajax:error', '#message_form', (e) ->
+  console.log e.detail[2]
+  $('textarea#message').val ''
+  alert 'メッセージが届かなかったみたい...'
   return
