@@ -20,12 +20,28 @@
 
         <%= form_with model: @post, id: "message_form" do |f| %>
             <%= f.text_area :message, :class => "textbox", :placeholder => "何を書こうかな…", :pattern => "[\u3040-\u309f]+$" %>
+
             <%= image_submit_tag("send.png", id: "send") %>
             <!-- 送信前に確認したい場合 -->
             <!--<%= image_submit_tag("send.png", id: "send", data: { confirm: "メッセージを放流しますか？"}) %>-->
         <% end %>
     </div>
+    <!-- 未読が存在する時ボトルの画像を表示 -->
+    <div class="bottle">
+        <% if @post_all.present? %>
+            <%= image_tag("bottle.png", :class => "bottle-icon") %>
+        <% end %>
+    </div>
 
+    <!-- グレーアウト -->
+    <div id="overlay"></div>
+
+    <!-- 投稿一覧 -->
+    <div class="post_all">
+        <% @post_all.each do |post| %>
+            <p><%= post %></p>
+        <% end %>
+    </div>
     <!-- フッター -->
     <footer>
     </footer>
