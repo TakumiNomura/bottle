@@ -13,3 +13,23 @@ $(document).on 'ajax:error', '#message_form', (e) ->
   $('textarea#message').val ''
   alert 'メッセージが届かなかったみたい...'
   return
+
+# ボトルをクリックした時、投稿一覧外の領域をクリックした時の処理
+$(document).on 'click touchend', (e) ->
+    if !$(e.target).closest('.post_all').length and !$(e.target).closest('.bottle img.bottle-icon').length
+        $('.post_all').fadeOut()
+    else if $(e.target).closest('.bottle img.bottle-icon').length
+        if $('.post_all').is(':hidden')
+            $('.post_all').fadeIn()
+            $('#overlay').fadeIn()
+        else
+            $('.post_all').fadeOut()
+    $('#overlay').unbind().click ->
+        $('#overlay').fadeOut()
+    return
+return
+
+$ ->
+    $('.bottle img.bottle-icon').on 'click', ->
+        $('.post_all').css('display', 'flex').hide().fadeIn()
+        return
