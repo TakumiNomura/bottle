@@ -24,8 +24,9 @@ $(document).on 'click touchend', (e) ->
             $('#overlay').fadeIn()
         else
             $('.post_all').fadeOut()
-    $('#overlay').unbind().click ->
+    $('#overlay, .post_all a').unbind().click ->
         $('#overlay').fadeOut()
+        $('.post_all').fadeOut()
     return
 return
 

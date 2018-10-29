@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'home/message/:id' => "home#message"
+  get 'home/message'
   get 'home/top'
   get 'home/main'
   post "home/top" => "home#create"
