@@ -6,14 +6,6 @@
   </head>
 
   <body>
-    <!-- ヘッダー -->
-    <header>
-      <div class="header-logo">
-        <a href="/">Bottle</a>
-      </div>
-      <div class="mypage">
-      </div>
-    </header>
     <!-- メッセージの入力 -->
     <div class="contents-wrap">
         <p class="title">メッセージ</p>
@@ -39,7 +31,8 @@
     <!-- 投稿一覧 -->
     <div class="post_all">
         <% @post_all.each do |post| %>
-            <p><%= post %></p>
+            <p>No.<%= post.id %> <%= post.created_at.strftime("%Y-%m-%d") %></p>
+            <%=  link_to "メッセージを見る", "/home/message/#{post.id}" %>
         <% end %>
     </div>
     <!-- フッター -->
