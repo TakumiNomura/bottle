@@ -13,7 +13,7 @@
         <%= form_with model: @post, id: "message_form" do |f| %>
             <%= f.text_area :message, :class => "textbox", :placeholder => "何を書こうかな…", :pattern => "[\u3040-\u309f]+$" %>
 
-            <%= image_submit_tag("send.png", id: "send") %>
+            <%= image_submit_tag("bottle_slh.png", id: "send") %>
             <!-- 送信前に確認したい場合 -->
             <!--<%= image_submit_tag("send.png", id: "send", data: { confirm: "メッセージを放流しますか？"}) %>-->
         <% end %>
@@ -31,8 +31,10 @@
     <!-- 投稿一覧 -->
     <div class="post_all">
         <% @post_all.each do |post| %>
-            <p>No.<%= post.id %> <%= post.created_at.strftime("%Y-%m-%d") %></p>
-            <%=  link_to "メッセージを見る", "/home/message/#{post.id}" %>
+            <div class="message_item">
+                <p>No.<%= post.id %> <%= post.created_at.strftime("%Y-%m-%d") %></p>
+                <%=  link_to "メッセージを見る", "/home/message/#{post.id}" %>
+            </div>
         <% end %>
     </div>
     <!-- フッター -->
