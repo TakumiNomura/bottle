@@ -2,6 +2,39 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/* トップページ */
+.button-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.button-wrap .button{
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    font-size: 20px;
+    font-family: 'Arial Hebrew';
+    transition: .4s;
+    background-color: #18316E;
+    color: #fff;
+    margin-right: 5%;
+    cursor: pointer;
+}
+
+.button-wrap .button:hover{
+    opacity: 0.8;
+}
+
+.button-wrap .button a{
+    color: #FFF;
+    text-decoration: none;
+}
+
 /* メインページ */
 header{
     display: flex;
@@ -106,7 +139,7 @@ body{
     position: relative;
     margin-top: 40px;
 }
-// 投稿一覧の背景
+// グレーアウト
 #overlay{
     z-index: 1;
 	display: none;

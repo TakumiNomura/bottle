@@ -1,9 +1,10 @@
 class HomeController < ApplicationController
   def top
-      @post_all = Post.where("read_flag is false") #.pluck(:message)
+
   end
 
   def main
+      @post_all = Post.where("read_flag is false") #.pluck(:message)
   end
 
   def create
