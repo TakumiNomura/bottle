@@ -14,6 +14,7 @@
 }
 
 .button-wrap .button{
+    width: 100%;
     padding: 15px 20px;
     margin-bottom: 20px;
     border-radius: 2px;
@@ -22,7 +23,6 @@
     transition: .4s;
     background-color: #18316E;
     color: #fff;
-    margin-right: 5%;
     cursor: pointer;
 }
 
@@ -33,6 +33,17 @@
 .button-wrap .button a{
     color: #FFF;
     text-decoration: none;
+}
+
+// スマホ向け
+@media screen and (max-width: 767px) {
+    .button-wrap{
+        width: 90vw;
+        position: absolute;
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 /* メインページ */
@@ -56,6 +67,20 @@ header{
 }
 .header-logo a:hover{
     opacity: 0.7;
+}
+
+// スマホ向け
+@media screen and (max-width: 767px) {
+    .header-logo{
+        height: auto;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-left: 0px;
+    }
+    .header-logo a{
+        font-size: 24px;
+    }
 }
 
 body{
@@ -83,7 +108,7 @@ body{
     font-size: 24px;
     font-weight: 200;
 }
-/* 金額入力 */
+/* メッセージ入力 */
 .contents-wrap form{
     position: relative;
     width:90%;
@@ -104,6 +129,7 @@ body{
 	background: transparent;
 	font-size: 24px;
 }
+
 .contents-wrap form img, input#send{
     position: absolute;
     height: 50px;
@@ -112,6 +138,15 @@ body{
     transform: translateY(-50%) rotate(30deg);
     filter: invert(100%);
     // transition: .4s;
+}
+
+@media screen and (max-width: 767px) {
+    .contents-wrap{
+        width: 90vw;
+    }
+    .contents-wrap form img, input#send{
+        left: 80%;
+    }
 }
 // 送信ボタン
 .contents-wrap form img:hover, input#send:hover{
