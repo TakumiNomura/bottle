@@ -13,7 +13,7 @@ class User < ApplicationRecord
           provider: auth.provider,
           # email:    User.dummy_unique_email(auth),
           # email:    email,
-          password: Devise.friendly_token[0, 20],
+          # password: Devise.friendly_token[0, 20],
           image_url: auth.info.image,
           name: auth.info.name,
           nickname: auth.info.nickname
