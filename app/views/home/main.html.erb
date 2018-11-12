@@ -11,10 +11,8 @@
     <% end %>
 </div>
 <!-- 未読が存在する時ボトルの画像を表示 -->
-<div class="bottle">
-    <% if @post_all.present? %>
-        <%= image_tag("bottle.png", :class => "bottle-icon") %>
-    <% end %>
+<div class="bottle" style="display:none;">
+    <%= image_tag("bottle.png", :class => "bottle-icon") %>
 </div>
 
 <!-- グレーアウト -->
@@ -23,7 +21,7 @@
 <!-- 投稿一覧 -->
 <div class="post_all">
     <% @post_all.each do |post| %>
-        <div class="message_item">
+        <div class="message_item" data-message-id="<%= post.id %>">
             <p>No.<%= post.id %> <%= post.created_at.strftime("%Y-%m-%d") %></p>
             <%=  link_to "メッセージを見る", "/home/message/#{post.id}" %>
         </div>

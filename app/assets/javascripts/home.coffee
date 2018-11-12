@@ -2,6 +2,38 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+$ ->
+    update = ->
+      if window.location.href.match(/\/home\/main/)
+        $.ajax(url: location.href + '.json').done((json) ->
+          if $('.message_item').length
+            id = $('.message_item:last').data('message-id')
+            $('.bottle').fadeIn()
+          else
+            id = 0
+          insertHTML = ''
+          if json.id > id
+            insertHTML = $('.post_all').append('
+                <div class="message_item" data-message-id=' + json.id + '>
+                    <p>No.' + json.id + ' ' + json.date + '</p>
+                    <a href="/home/message/' + json.id + '">メッセージを見る</a>
+                </div>
+            ')
+          return
+          $('.post_all').append insertHTML
+          return
+        ).fail (json) ->
+          return
+      else
+        clearInterval update
+      return
+    $ ->
+        update()
+        setInterval update, 10000
+        return
+    return
+
+
 # メッセージを送った時に成功 or 失敗
 $(document).on 'ajax:success', '#message_form', (e) ->
   console.log e.detail[0]
