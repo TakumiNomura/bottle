@@ -1,9 +1,9 @@
 <!-- メッセージの入力 -->
 <div class="contents-wrap">
-    <p class="title">メッセージ</p>
+    <p class="title">めっせーじ</p>
 
     <%= form_with model: @post, id: "message_form" do |f| %>
-        <%= f.text_area :message, :class => "textbox", :placeholder => "何を書こうかな…", :pattern => "[\u3040-\u309f]+$" %>
+        <%= f.text_area :message, :class => "textbox", :placeholder => "なにをかこうかな…", :pattern => "[\u3040-\u309f]+$" %>
 
         <%= image_submit_tag("bottle_slh.png", id: "send") %>
         <!-- 送信前に確認したい場合 -->
@@ -11,10 +11,8 @@
     <% end %>
 </div>
 <!-- 未読が存在する時ボトルの画像を表示 -->
-<div class="bottle">
-    <% if @post_all.present? %>
-        <%= image_tag("bottle.png", :class => "bottle-icon") %>
-    <% end %>
+<div class="bottle" style="display:none;">
+    <%= image_tag("bottle.png", :class => "bottle-icon") %>
 </div>
 
 <!-- グレーアウト -->
@@ -23,9 +21,9 @@
 <!-- 投稿一覧 -->
 <div class="post_all">
     <% @post_all.each do |post| %>
-        <div class="message_item">
+        <div class="message_item" data-message-id="<%= post.id %>">
             <p>No.<%= post.id %> <%= post.created_at.strftime("%Y-%m-%d") %></p>
-            <%=  link_to "メッセージを見る", "/home/message/#{post.id}" %>
+            <%=  link_to "めっせーじをみる", "/home/message/#{post.id}" %>
         </div>
     <% end %>
 </div>
