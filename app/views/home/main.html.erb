@@ -1,9 +1,9 @@
 <!-- メッセージの入力 -->
 <div class="contents-wrap">
-    <p class="title">メッセージ</p>
+    <p class="title">めっせーじ</p>
 
     <%= form_with model: @post, id: "message_form" do |f| %>
-        <%= f.text_area :message, :class => "textbox", :placeholder => "何を書こうかな…", :pattern => "[\u3040-\u309f]+$" %>
+        <%= f.text_area :message, :class => "textbox", :placeholder => "なにをかこうかな…", :pattern => "[\u3040-\u309f]+$" %>
 
         <%= image_submit_tag("bottle_slh.png", id: "send") %>
         <!-- 送信前に確認したい場合 -->
@@ -23,7 +23,7 @@
     <% @post_all.each do |post| %>
         <div class="message_item" data-message-id="<%= post.id %>">
             <p>No.<%= post.id %> <%= post.created_at.strftime("%Y-%m-%d") %></p>
-            <%=  link_to "メッセージを見る", "/home/message/#{post.id}" %>
+            <%=  link_to "めっせーじをみる", "/home/message/#{post.id}" %>
         </div>
     <% end %>
 </div>

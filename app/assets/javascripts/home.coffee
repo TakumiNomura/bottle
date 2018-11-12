@@ -15,8 +15,8 @@ $ ->
           if json.id > id
             insertHTML = $('.post_all').append('
                 <div class="message_item" data-message-id=' + json.id + '>
-                    <p>No.' + json.id + ' ' + json.date + '</p>
-                    <a href="/home/message/' + json.id + '">メッセージを見る</a>
+                    <p>' + json.id + 'ばん ' + json.date + '</p>
+                    <a href="/home/message/' + json.id + '">めっせーじをみる</a>
                 </div>
             ')
           return
@@ -38,12 +38,12 @@ $ ->
 $(document).on 'ajax:success', '#message_form', (e) ->
   console.log e.detail[0]
   $('textarea#message').val ''
-  alert 'メッセージを海に流しました...'
+  alert 'めっせーじをうみにながしました...'
   return
 $(document).on 'ajax:error', '#message_form', (e) ->
   console.log e.detail[2]
   $('textarea#message').val ''
-  alert 'メッセージが届かなかったみたい...'
+  alert 'めっせーじはとどかなかったみたい...'
   return
 
 # ボトルをクリックした時、投稿一覧外の領域をクリックした時の処理
