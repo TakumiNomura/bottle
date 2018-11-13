@@ -3,6 +3,31 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 /* トップページ */
+.top-visual, .howto{
+    height: 100vh;
+    color: #fff;
+}
+
+.howto{
+    padding-left: 100px;
+}
+
+// スマホ向け
+@media screen and (max-width: 767px) {
+    .howto{
+        padding-left: 0px;
+        padding: 10%;
+    }
+}
+
+.howto h2{
+    margin-bottom: 50px;
+}
+
+.howto p{
+    line-height: 2.0;
+}
+
 .button-wrap{
     display: flex;
     flex-wrap: wrap;
@@ -11,6 +36,9 @@
     width: 500px;
     text-align: center;
     margin: 0 auto;
+    position: relative;
+    top: 60%;
+    transform: translateY(-50%);
 }
 
 .button-wrap .button{
@@ -40,6 +68,7 @@
     .button-wrap{
         width: 90vw;
         position: absolute;
+        top: unset;
         bottom: 5%;
         left: 50%;
         transform: translateX(-50%);
@@ -84,12 +113,16 @@ header{
 }
 
 body{
-    background: linear-gradient(#5BBDAA, #708FB9 30%, #7389BB);
-    height: 100vh;
     letter-spacing: 0.05em;
+    margin: 0;
+    background: linear-gradient(#5BBDAA, #708FB9 30%, #7389BB);
 }
 
-/* 貯金額の表示・入力 */
+.main-view{
+    height: 90vh;
+}
+
+/* メッセージの表示・入力 */
 .contents-wrap{
     color: #fff;
     font-family: Hiragino Sans;

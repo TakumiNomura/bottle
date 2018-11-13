@@ -1,31 +1,33 @@
-<!-- メッセージの入力 -->
-<div class="contents-wrap">
-    <p class="title">めっせーじ</p>
+<div class="main-view">
+    <!-- メッセージの入力 -->
+    <div class="contents-wrap">
+        <p class="title">めっせーじ</p>
 
-    <%= form_with model: @post, id: "message_form" do |f| %>
-        <%= f.text_area :message, :class => "textbox", :placeholder => "なにをかこうかな…", :pattern => "[\u3040-\u309f]+$" %>
+        <%= form_with model: @post, id: "message_form" do |f| %>
+            <%= f.text_area :message, :class => "textbox", :placeholder => "なにをかこうかな…", :pattern => "[\u3040-\u309f]+$" %>
 
-        <%= image_submit_tag("bottle_slh.png", id: "send") %>
-        <!-- 送信前に確認したい場合 -->
-        <!--<%= image_submit_tag("send.png", id: "send", data: { confirm: "メッセージを放流しますか？"}) %>-->
-    <% end %>
-</div>
-<!-- 未読が存在する時ボトルの画像を表示 -->
-<div class="bottle" style="display:none;">
-    <%= image_tag("bottle.png", :class => "bottle-icon") %>
-</div>
+            <%= image_submit_tag("bottle_slh.png", id: "send") %>
+            <!-- 送信前に確認したい場合 -->
+            <!--<%= image_submit_tag("send.png", id: "send", data: { confirm: "メッセージを放流しますか？"}) %>-->
+        <% end %>
+    </div>
+    <!-- 未読が存在する時ボトルの画像を表示 -->
+    <div class="bottle" style="display:none;">
+        <%= image_tag("bottle.png", :class => "bottle-icon") %>
+    </div>
 
-<!-- グレーアウト -->
-<div id="overlay"></div>
+    <!-- グレーアウト -->
+    <div id="overlay"></div>
 
-<!-- 投稿一覧 -->
-<div class="post_all">
-    <% @post_all.each do |post| %>
-        <div class="message_item" data-message-id="<%= post.id %>">
-            <p>No.<%= post.id %> <%= post.created_at.strftime("%Y-%m-%d") %></p>
-            <%=  link_to "めっせーじをみる", "/home/message/#{post.id}" %>
-        </div>
-    <% end %>
+    <!-- 投稿一覧 -->
+    <div class="post_all">
+        <% @post_all.each do |post| %>
+            <div class="message_item" data-message-id="<%= post.id %>">
+                <p>No.<%= post.id %> <%= post.created_at.strftime("%Y-%m-%d") %></p>
+                <%=  link_to "めっせーじをみる", "/home/message/#{post.id}" %>
+            </div>
+        <% end %>
+    </div>
 </div>
 <!-- フッター -->
 <footer>
