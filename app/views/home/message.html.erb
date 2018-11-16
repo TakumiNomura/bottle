@@ -2,7 +2,7 @@
 <div class="message">
     <div class="contents-wrap">
         <p class="title">とどいためっせーじ</p>
-        <div class="text"><%= @message.message %></div>
+        <div class="text"><%= simple_format(@message.message) %></div>
     </div>
 
     <div class="back">
