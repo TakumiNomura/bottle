@@ -1,47 +1,15 @@
 <div class="top-visual">
-    <div class="button-wrap">
-        <div class="button" style="display: none;">
-            Google
+    <div class="main-view">
+        <div class="copy">
+            <p>おもい　ぼとるにつめて　きらきら</p>
         </div>
         <div class="button">
-            <%= link_to 'ついったーろぐいん', user_twitter_omniauth_authorize_path %>
+            <%= link_to 'ついったーでろぐいん', user_twitter_omniauth_authorize_path %>
         </div>
-        <div class="button">
-            <%= link_to "めっせーじをみにいく", '/home/main' %>
-        </div>
+        <%= link_to 'めいんぺーじ', '/home/main' %>
     </div>
-    <!-- グレーアウト -->
-    <div id="overlay"></div>
+    <!-- 背景画像 -->
 </div>
-
-<div class="howto" id="send">
-    <div class="howto-text">
-        <h2>だれかに、このこえをとどけたい。</h2>
-        <p>
-            だれかにきいてほしいことがあるけど じぶんがいったとしられたくない。<br>
-            だれかにきいてほしいことがあるけど しってるだれかにきかせたいわけではない。<br>
-            たわいないただのひとりごとだけど それでもきょうかんしてもらいたい。<br>
-            きょうかんしてもらいたいけど べつにしてもらわなくていい。<br>
-            でももしなにかがかえってくるというなら、それはきっととってもうれしいこと。
-        </p>
-    </div>
-    <div class="howto-image">
-
-    </div>
-</div>
-<div class="howto" id="receive">
-    <div class="howto-text">
-        <h2>ふときこえてきたこえに、そっとみみをかたむけた。</h2>
-        <p>
-            こえがきこえてくる。<br>
-            かおもしらないだれかのこえ。<br>
-            わたしあてではけっしてないけど わたしだけにとどいただれかのこえ。<br>
-            たのしげだったり かなしげだったり さみしげだったり おこっていたり<br>
-            かずあるこえのなかにふと、こころにひっかかるものがみつかって。<br>
-            ちょっとだけ こたえてみたくなる。
-        </p>
-    </div>
-    <div class="howto-image">
-
-    </div>
+<div class="back-img">
+    <%= image_tag("neko.png", :id => "cat") %>
 </div>
