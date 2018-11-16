@@ -4,13 +4,18 @@
         <p class="title">めっせーじ</p>
 
         <%= form_with model: @post, id: "message_form" do |f| %>
-            <%= f.text_area :message, :class => "textbox", :placeholder => "なにをかこうかな…", :pattern => "[\u3040-\u309f]+$" %>
+            <%= f.text_area :message, :class => "textbox", :placeholder => "なにをかこうかな…", :onblur => "return hiraganacheck()" %>
 
             <%= image_submit_tag("bottle_slh.png", id: "send") %>
             <!-- 送信前に確認したい場合 -->
             <!--<%= image_submit_tag("send.png", id: "send", data: { confirm: "メッセージを放流しますか？"}) %>-->
         <% end %>
     </div>
+
+    <div class="error">
+        <p>ひらがな　と　いちぶのきごう　だけ　にゅうりょく　してね</p>
+    </div>
+
     <!-- 未読が存在する時ボトルの画像を表示 -->
     <div class="bottle" style="display:none;">
         <%= image_tag("bottle.png", :class => "bottle-icon") %>
@@ -29,6 +34,15 @@
         <% end %>
     </div>
 </div>
-<!-- フッター -->
-<footer>
-</footer>
+<script>
+    function hiraganacheck() {
+        message = $("#message").val();
+        if(message.match(/[^ぁ-ん０-９0-9ー〜！？!?^\r\n\ \s]+/ )){
+            $("#message").css("box-shadow", "0px 0px 10px red");
+            $(".error").fadeIn();
+        }else{
+            $("#message").css("box-shadow","unset");
+            $(".error").fadeOut();
+        }
+    }
+</script>

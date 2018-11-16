@@ -209,6 +209,15 @@ body{
     80% {transform: translateY(-50%) rotate(25deg);}
     100%{transform: translateY(-50%) rotate(30deg);}
 }
+
+.error{
+    display: none;
+}
+.error p{
+    color:RED;
+    text-align: center;
+}
+
 // ボトルアイコン
 .bottle{
     position: relative;
@@ -292,6 +301,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /* メッセージ詳細画面 */
+
+span.mark1 { background-color: yellow; } /* 黄色ハイライト用 */
+
 .message .contents-wrap .text{
     width: 100%;
     border: 1px solid;
