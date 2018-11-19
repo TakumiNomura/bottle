@@ -5,6 +5,20 @@
         <div class="text"><%= simple_format(@message.message) %></div>
     </div>
 
+    <div class="message-wrap">
+        <%= form_with model: @post, id: "message_form", onsubmit: "return hiraganacheck()" do |f| %>
+            <%= f.text_area :message, :class => "textbox", :placeholder => "かいてみる？", :onblur => "return hiraganacheck()" %>
+
+            <%= image_submit_tag("bottle_slh.png", id: "send") %>
+            <!-- 送信前に確認したい場合 -->
+            <!--<%= image_submit_tag("send.png", id: "send", data: { confirm: "メッセージを放流しますか？"}) %>-->
+        <% end %>
+    </div>
+
+    <div class="write-icon">
+        <%= image_tag("pencil.png", :class => "write-icon") %>
+    </div>
+
     <div class="back">
         <%= link_to "もどる", :back, data: {"turbolinks" => false} %>
     </div>

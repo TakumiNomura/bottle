@@ -18,23 +18,17 @@
         <p>ひらがな　と　いちぶのきごう　だけ　にゅうりょく　してね</p>
     </div>
 
-    <!-- 未読が存在する時ボトルの画像を表示 -->
-    <div class="unread-icon" style="display:none;">
+    <!-- 未読が存在する時アイコンを表示 -->
+    <div class="unread-icon">
         <%= image_tag("new.png", :class => "unread-icon") %>
+    </div>
+
+    <div class="write-icon">
+        <%= image_tag("pencil.png", :class => "write-icon") %>
     </div>
 
     <!-- グレーアウト -->
     <div id="overlay"></div>
-
-    <!-- 投稿一覧 -->
-    <div class="post_all">
-        <% @post_all.each do |post| %>
-            <div class="message_item" data-message-id="<%= post.id %>">
-                <p><%= post.id %>ばん <%= post.created_at.strftime("%Y-%m-%d") %></p>
-                <%=  link_to "めっせーじをみる", "/home/message/#{post.id}" %>
-            </div>
-        <% end %>
-    </div>
 </div>
 <div class="back-img">
     <%= image_tag("neko.png", :id => "cat") %>
