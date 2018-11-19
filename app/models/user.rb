@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_many :receives
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :rememberable, :omniauthable
+  devise :rememberable, :omniauthable, :registerable
   # :database_authenticatable,:recoverable,:validatable, :registerable :trackable,
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
@@ -24,6 +24,12 @@ class User < ApplicationRecord
     return user
   end
 
+  def remember_me
+    true
+  end
+  # def forget
+  #   update_attribute(:remember_digest, nil)
+  # end
   # private
 
   # def self.dummy_unique_email(auth)
