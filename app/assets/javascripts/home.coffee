@@ -8,7 +8,7 @@ $ ->
         $.ajax(url: location.href + '.json').done((json) ->
           if $('.message_item').length
             id = $('.message_item:last').data('message-id')
-            $('.bottle').fadeIn()
+            $('.unread-icon').fadeIn()
           else
             id = 0
           insertHTML = ''
@@ -38,12 +38,12 @@ $ ->
 $(document).on 'ajax:success', '#message_form', (e) ->
   console.log e.detail[0]
   $('textarea#message').val ''
-  alert 'めっせーじをうみにながしました...'
+  alert 'めっせーじをおくりました...'
   return
 $(document).on 'ajax:error', '#message_form', (e) ->
   console.log e.detail[2]
   $('textarea#message').val ''
-  alert 'めっせーじはとどかなかったみたい...'
+  alert 'めっせーじをおくれなかったみたい...'
   return
 
 # ボタン・ボトルをクリックした時、投稿一覧外の領域をクリックした時の処理
@@ -55,9 +55,9 @@ $(document).on 'click touchend', (e) ->
             window.location = $(this).find('a').attr('href')
         false
 
-    if !$(e.target).closest('.post_all').length and !$(e.target).closest('.bottle img.bottle-icon').length
+    if !$(e.target).closest('.post_all').length and !$(e.target).closest('.unread-icon img.unread-icon').length
         $('.post_all').fadeOut()
-    else if $(e.target).closest('.bottle img.bottle-icon').length
+    else if $(e.target).closest('.unread-icon img.unread-icon').length
         if $('.post_all').is(':hidden')
             $('.post_all').fadeIn()
             $('#overlay').fadeIn()
@@ -70,7 +70,7 @@ $(document).on 'click touchend', (e) ->
 return
 
 $ ->
-    $('.bottle img.bottle-icon').on 'click', ->
+    $('.unread-icon img.unread-icon').on 'click', ->
         $('.post_all').css('display', 'flex').hide().fadeIn()
         return
     return

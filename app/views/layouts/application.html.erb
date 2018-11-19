@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ふろーとりっぷ</title>
+    <title>ふろうとりっぷ</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -15,9 +15,12 @@
     <!-- ヘッダー -->
     <header>
       <div class="header-logo">
-        <a href="/">ふろーとりっぷ</a>
+        <a href="/"><%= image_tag("logo.png") %></a>
       </div>
-      <div class="mypage">
+      <div class="header-menu">
+          <p>まいぺーじ</p>
+          <p>あばうと</p>
+          <p>はうとぅ</p>
       </div>
     </header>
     <%= yield %>
