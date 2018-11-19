@@ -3,34 +3,29 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
+    $('.write-icon img.write-icon').click ->
+        if $('.message-wrap .textbox').css('visibility') == 'hidden'
+            $('.message-wrap .textbox, input#send').css('visibility', 'visible')
+        else
+            $('.message-wrap .textbox, input#send').css('visibility', 'hidden')
+        return
+    $('.unread-icon img.unread-icon').click ->
+        update()
+        return
     update = ->
       if window.location.href.match(/\/home\/main/)
         $.ajax(url: location.href + '.json').done((json) ->
-          if $('.message_item').length
-            id = $('.message_item:last').data('message-id')
-            $('.unread-icon').fadeIn()
-          else
-            id = 0
-          insertHTML = ''
+          id = 0
           if json.id > id
-            insertHTML = $('.post_all').append('
-                <div class="message_item" data-message-id=' + json.id + '>
-                    <p>' + json.id + 'ばん ' + json.date + '</p>
-                    <a href="/home/message/' + json.id + '">めっせーじをみる</a>
-                </div>
-            ')
+            window.location.href = '/home/message/' + json.id
+          else
+            alert "未読はないみたい"
           return
           $('.post_all').append insertHTML
           return
         ).fail (json) ->
           return
-      else
-        clearInterval update
       return
-    $ ->
-        update()
-        setInterval update, 10000
-        return
     return
 
 
@@ -55,6 +50,7 @@ $(document).on 'click touchend', (e) ->
             window.location = $(this).find('a').attr('href')
         false
 
+    ###
     if !$(e.target).closest('.post_all').length and !$(e.target).closest('.unread-icon img.unread-icon').length
         $('.post_all').fadeOut()
     else if $(e.target).closest('.unread-icon img.unread-icon').length
@@ -67,10 +63,6 @@ $(document).on 'click touchend', (e) ->
         $('#overlay').fadeOut()
         $('.post_all').fadeOut()
     return
-return
+    ###
 
-$ ->
-    $('.unread-icon img.unread-icon').on 'click', ->
-        $('.post_all').css('display', 'flex').hide().fadeIn()
-        return
-    return
+return
