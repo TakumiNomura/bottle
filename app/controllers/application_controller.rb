@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
     '/home/main'
   end
 
-  def after_sign_out_path_for(resource)
-    flash[:alert] = "ログアウトしました"
-    '/home/top'
-  end
+#   def after_sign_out_path_for(resource)
+#     flash[:alert] = "ログアウトしました"
+#     '/home/top'
+#   end
 
   def set_current_user
     @current_user ||= User.find_by(id: session[:user_id])
