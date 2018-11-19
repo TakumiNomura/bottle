@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-
+  # before_action :authenticate_user!
   def top
     if user_signed_in?
       redirect_to "/home/main"
@@ -16,7 +16,7 @@ class HomeController < ApplicationController
   end
 
   def create
-    @post = Post.new(message:params[:message], read_flag:"false")
+    @post = Post.new(message:params[:message], read_flag:"false", src_id: current_user.id)
     if !@post.save
         render :new, notice: "Error"
     end
@@ -24,7 +24,8 @@ class HomeController < ApplicationController
 
   def message
     @message = Post.find(params[:id])
-    @message.update(read_flag: true)
+    @message.update(read_flag: true, dst_id: current_user.id)
   end
+
 
 end
