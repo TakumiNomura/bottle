@@ -1,9 +1,9 @@
 class HomeController < ApplicationController
   # before_action :authenticate_user!
   def top
-    if user_signed_in?
-      redirect_to "/home/main"
-    end
+#     if user_signed_in?
+#       redirect_to "/home/main"
+#     end
   end
 
   def main
