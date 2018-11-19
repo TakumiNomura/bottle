@@ -24,9 +24,9 @@ class User < ApplicationRecord
     return user
   end
 
-  def remember_me
-    true
-  end
+#   def remember_me
+#     true
+#   end
   # def forget
   #   update_attribute(:remember_digest, nil)
   # end
