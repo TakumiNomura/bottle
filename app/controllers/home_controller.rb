@@ -24,7 +24,7 @@ class HomeController < ApplicationController
 
   def message
     @message = Post.find(params[:id])
-    @message.update(read_flag: true)
+    @message.update(read_flag: true, dst_id: current_user.id)
   end
 
 
