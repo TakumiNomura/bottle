@@ -20,7 +20,7 @@ class HomeController < ApplicationController
           format.json {
               @user = current_user.id
               @user_id = Integer(@user)
-              @post_all = Post.where("read_flag is false").where.not(src_id: @user_id)
+              @post_all = Post.where("read_flag is false").where.not(src_id: @user_id).where(dst_id: nil)
               @post_new = @post_all.first
           }
       end
@@ -31,6 +31,14 @@ class HomeController < ApplicationController
     if !@post.save
         render :new, notice: "Error"
     end
+  end
+
+  def reply
+      @replyto = Post.find(params[:id])
+      @reply = Post.new(message:params[:message], read_flag:"false", src_id: current_user.id, dst_id: @replyto.src_id)
+      if !@reply.save
+          render :new, notice: "Error"
+      end
   end
 
   def message
