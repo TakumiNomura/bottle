@@ -390,7 +390,7 @@ img.write-icon{
     position: absolute;
     border: 1px solid #888;
     border-radius: 30px;
-    right: 20px;
+    right: 60px;
     transition: .4s;
     background-color: white;
     z-index: 5;
@@ -398,6 +398,9 @@ img.write-icon{
 }
 .write-icon img:hover{
     filter: invert(80%);
+}
+.message-view img.write-icon{
+    display: none;
 }
 
 .back-img {
