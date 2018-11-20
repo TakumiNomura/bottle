@@ -20,7 +20,7 @@ class HomeController < ApplicationController
           format.json {
               @user = current_user.id
               @user_id = Integer(@user)
-              @post_all = Post.where("read_flag is false").where.not(src_id: @user_id).where.not(dst_id: nil)
+              @post_all = Post.where("read_flag is false")
               @post_new = @post_all.first
           }
       end
