@@ -2,6 +2,61 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.loading {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  background: #FFF;
+  z-index: 9999;
+}
+
+.loading h1.loading-text{
+    text-align: center;
+    position: relative;
+    top: 30%;
+    transform: translateY(-50%);
+    color: #5E91CD;
+    font-family: serif;
+}
+
+
+.animation{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+	width: 0;
+	height: 0;
+	margin: 0 auto;
+	border: 36px solid #3261AB;
+	border-color: #D5E0F1 #AEC1E3 #6A8CC7 #3261AB;
+	border-radius: 50%;
+	z-index: 1;
+	animation: spin 1s linear infinite;
+}
+
+.animation:after{
+	content: "";
+	position: absolute;
+	top: -30px;
+	left: -30px;
+	width: 0;
+	height: 0;
+	border: 30px solid #3261AB;
+	border-color: #fff;
+	border-radius: 50%;
+	z-index: 2;
+}
+
+@keyframes spin{
+	0%{
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(360deg);
+	}
+}
 
 /* 全体 */
 body{
@@ -24,7 +79,7 @@ header{
     opacity: 0.7;
 }
 .header-menu{
-    display: flex;
+    display: none;
     margin-right: 5%;
 }
 .header-menu p{
@@ -236,7 +291,7 @@ header{
     z-index: 2;
 }
 
-.unread-icon img.unread-icon{
+.unread-icon img.unread-icon, .unread-receive-icon img.unread-receive-icon{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -248,6 +303,14 @@ header{
     animation: wave 2s ease-in-out;
     -webkit-animation: wave 2s linear infinite alternate;
 }
+
+.unread-receive-icon img.unread-receive-icon{
+    filter: invert(1);
+    margin-top: 10px;
+    z-index: 5;
+    display:none;
+}
+
 @keyframes wave{
     0%  {transform: translateX(0px) translateY(0px) rotate(0deg);}
     20% {transform: translateX(0.1px) translateY(-2px) rotate(0.5deg);}
@@ -266,7 +329,7 @@ header{
     100%{transform: translateX(1px) translateY(-20px) rotate(2.5deg);}
 }
 
-.unread-icon img.unread-icon:hover{
+.unread-icon img.unread-icon:hover, .unread-receive-icon img.unread-receive-icon:hover{
     opacity: 0.7;
 }
 
@@ -343,8 +406,8 @@ img.write-icon{
 	position: relative;
 	background: image-url("matinami.png") repeat-x 0 0;
 	background-size: auto 100%;
-	animation: bg-slider 50s linear infinite; /* 50sの部分背景画像の約数だとスムーズ */
-    -webkit-animation: bg-slider 50s linear infinite;
+	animation: bg-slider 500s linear infinite; /* 500sの部分背景画像の約数だとスムーズ */
+    -webkit-animation: bg-slider 500s linear infinite;
 	margin: 80px 0;
 	padding: 0;
 }
