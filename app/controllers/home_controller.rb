@@ -7,10 +7,20 @@ class HomeController < ApplicationController
   end
 
   def main
+      @path = Rails.application.routes.recognize_path(request.referer)
+      if @path[:action] == "message"
+          @loading = false
+      else
+          @loading = true
+      end
       respond_to do |format|
-          format.html # html形式でアクセスがあった場合は特に何もなし
+          format.html {
+              @user = current_user.id
+          }# html形式でアクセスがあった場合は特に何もなし
           format.json {
-              @post_all = Post.where("read_flag is false")
+              @user = current_user.id
+              @user_id = Integer(@user)
+              @post_all = Post.where("read_flag is false").where.not(src_id: @user_id).where.not(dst_id: nil)
               @post_new = @post_all.first
           }
       end

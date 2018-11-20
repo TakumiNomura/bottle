@@ -2,6 +2,17 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+$('.loading').css('display', 'block');
+#前のページのurlにmessageが入っていなかったら
+stopload = ->
+  $('.loading').delay(1000).fadeOut 700
+  return
+
+$(window).on 'load', ->
+  $('.loading').delay(1000).fadeOut 400
+  # ローディング画面をフェードアウト
+  return
+
 $ ->
     $('.write-icon img.write-icon').click ->
         if $('.message-wrap .textbox').css('visibility') == 'hidden'
@@ -12,6 +23,27 @@ $ ->
     $('.unread-icon img.unread-icon').click ->
         update()
         return
+
+    $('.unread-receive-icon img.unread-receive-icon').click ->
+        window.location.href = '/home/message/' + json.id
+        return
+
+    receiveupdate = ->
+      alert "check..."
+      if window.location.href.match(/\/home\/main/)
+        $.ajax(url: location.href + '.json').done((json) ->
+          id = json.user_id
+          insertHTML = ''
+          if json.dst_id = id
+            $('.unread-recive-icon').fadeIn();
+            return
+          return
+        ).fail (json) ->
+          return
+        return
+      return
+
+
     update = ->
       if window.location.href.match(/\/home\/main/)
         $.ajax(url: location.href + '.json').done((json) ->
@@ -19,13 +51,19 @@ $ ->
           if json.id > id
             window.location.href = '/home/message/' + json.id
           else
-            alert "未読はないみたい"
+            alert "みつからなかったみたい…"
           return
           $('.post_all').append insertHTML
           return
         ).fail (json) ->
           return
+        return
       return
+
+      $ ->
+        receiveupdate()
+        setInterval receiveupdate, 5000
+        return
     return
 
 

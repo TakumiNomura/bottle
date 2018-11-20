@@ -1,6 +1,10 @@
-
-<% if user_signed_in? %>
-  <h1>こんにちは、<%= current_user.name %>さん</h1>
+<% if @loading == true  %>
+<div class="loading">
+    <% if user_signed_in? %>
+        <h1 class="loading-text">こんにちは、<%= current_user.name %>さん。</h1>
+    <% end %>
+    <div class="animation"></div>
+</div>
 <% end %>
 <div class="contents-wrap">
     <!-- メッセージの入力 -->
@@ -21,6 +25,10 @@
     <!-- 未読が存在する時アイコンを表示 -->
     <div class="unread-icon">
         <%= image_tag("new.png", :class => "unread-icon") %>
+    </div>
+
+    <div class="unread-receive-icon">
+        <%= image_tag("new.png", :class => "unread-receive-icon") %>
     </div>
 
     <div class="write-icon">
