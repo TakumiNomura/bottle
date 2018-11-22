@@ -27,7 +27,7 @@ class HomeController < ApplicationController
   end
 
   def create
-    @post = Post.new(message:params[:message], read_flag:"false", src_id: current_user.id)
+    @post = Post.new(message:params[:message], src_id: current_user.id)
     if !@post.save
         render :new, notice: "Error"
     end

@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_19_074630) do
+ActiveRecord::Schema.define(version: 2018_11_22_035258) do
 
   create_table "posts", force: :cascade do |t|
     t.text "message"
     t.integer "src_id"
     t.integer "dst_id"
-    t.boolean "read_flag"
+    t.boolean "read_flag", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
