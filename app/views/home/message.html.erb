@@ -1,7 +1,6 @@
 <!-- メッセージ -->
 <div class="message-view">
     <div class="message-wrap">
-        <p class="title">とどいためっせーじ</p>
         <div class="text"><%= simple_format(@message.message) %></div>
     </div>
 
@@ -23,3 +22,18 @@
         <%= link_to "もどる", :back, data: {"turbolinks" => false} %>
     </div>
 </div>
+
+<script>
+    function hiraganacheck() {
+        message = $("#message").val();
+        if(message.match(/[^ぁ-ん０-９0-9ー〜！？!?、。「」^ \r　\n\ \s]+/ )){
+            $("#message").css("box-shadow", "0px 0px 10px red");
+            $(".error").fadeIn();
+            return false;
+        }else{
+            $("#message").css("box-shadow","");
+            $(".error").fadeOut();
+            return true;
+        }
+    }
+</script>
