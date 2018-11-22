@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/* ローディングアニメーション */
 .loading {
   position: fixed;
   width: 100vw;
@@ -20,7 +21,6 @@
     color: #5E91CD;
     font-family: serif;
 }
-
 
 .animation{
     position: relative;
@@ -105,8 +105,6 @@ header{
 }
 
 /* トップページ */
-.top-visual{ }
-
 .main-view{
     display: flex;
     flex-wrap: wrap;
@@ -154,8 +152,7 @@ header{
     .main-view{
         width: 90vw;
         position: absolute;
-        top: unset;
-        bottom: 5%;
+        top: 40%;
         left: 50%;
         transform: translateX(-50%);
     }
@@ -186,7 +183,7 @@ header{
     text-align: left;
     box-sizing: border-box;
     width: 100%;
-    height: 35vh;
+    height: 200px;
     color: #555;
 	padding: 15px 80px 15px 20px;
 	border-radius: 3px;
@@ -252,6 +249,12 @@ header{
 .error p{
     color:#D45D87;
     text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+    .error{
+        width: 90%;
+    }
 }
 
 // グレーアウト
@@ -351,6 +354,12 @@ input[type=number]::-webkit-outer-spin-button {
 :focus {
     outline: none;
 }
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none;
+}
 
 /* メッセージ詳細画面 */
 .message-view .message-wrap .text{
@@ -399,8 +408,12 @@ img.write-icon{
 .write-icon img:hover{
     filter: invert(80%);
 }
-.message-view img.write-icon{
-    display: none;
+
+@media screen and (max-width: 767px) {
+    img.write-icon{
+        height: 50px;
+        right: 50px;
+    }
 }
 
 .back-img {

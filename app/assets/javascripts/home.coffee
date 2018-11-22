@@ -2,84 +2,84 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$('.loading').css('display', 'block');
-#前のページのurlにmessageが入っていなかったら
+# ローディングアニメーション
 stopload = ->
-  $('.loading').delay(1000).fadeOut 700
-  return
+    $('.loading').delay(1000).fadeOut 700
+    return
 
 $(window).on 'load', ->
-  $('.loading').delay(1000).fadeOut 400
-  # ローディング画面をフェードアウト
-  return
+    # ロードし終わったらローディング画面をフェードアウト
+    $('.loading').delay(1000).fadeOut 400
+    return
 
 $ ->
+    messageid = ''  # 返信できたメッセージID格納用
+
+    # 書き込みボタンをクリックした時、表示・非表示切り替え
     $('.write-icon img.write-icon').click ->
         if $('.message-wrap .textbox').css('visibility') == 'hidden'
             $('.message-wrap .textbox, input#send').css('visibility', 'visible')
         else
             $('.message-wrap .textbox, input#send').css('visibility', 'hidden')
+            $("#message").css("box-shadow","");
+            $(".error").fadeOut();
         return
+
+    # 未読アイコン(赤)をクリックした時
     $('.unread-icon img.unread-icon').click ->
-        update()
+        unread_receive()    # 未読のメッセージを探しに行く
         return
 
+    # 返信未読アイコン(緑)をクリックした時
     $('.unread-receive-icon img.unread-receive-icon').click ->
-        window.location.href = '/home/message/' + json.id
+        window.location.href = '/home/message/' + messageid # 該当メッセージへ遷移
         return
 
-    receiveupdate = ->
-      alert "check..."
-      if window.location.href.match(/\/home\/main/)
+    # 返信メッセージを探しに行く
+    reply_receive = ->
+        if window.location.href.match(/\/home\/main/)   # メインページに居る時のみ
+            $.ajax(url: location.href + '.json').done((json) ->
+                if json.dst_id == json.user_id  # 自身のユーザIDと宛先ユーザIDが同じとき
+                    messageid = json.id # そのメッセージのIDを取得
+                    $('.unread-receive-icon').fadeIn(); # 返信未読アイコンを表示
+                return
+            ).fail (json) ->
+                return
+        return
+
+    # 未読のメッセージを探しに行く
+    # 既読フラグがfalse かつ 自分が送っていない かつ 宛先が存在しないもの で最古のもの
+    unread_receive = ->
         $.ajax(url: location.href + '.json').done((json) ->
-          id = json.user_id
-          insertHTML = ''
-          if json.dst_id = id
-            $('.unread-recive-icon').fadeIn();
+            if json.id > 0  # メッセージが見つかった時
+                window.location.href = '/home/message/' + json.id   # 見つかったメッセージに遷移
+            else    # メッセージが見つからない時
+                alert "みつからなかったみたい…"
             return
-          return
         ).fail (json) ->
-          return
+            return
         return
-      return
 
-
-    update = ->
-      if window.location.href.match(/\/home\/main/)
-        $.ajax(url: location.href + '.json').done((json) ->
-          id = 0
-          if json.id > id
-            window.location.href = '/home/message/' + json.id
-          else
-            alert "みつからなかったみたい…"
-          return
-          $('.post_all').append insertHTML
-          return
-        ).fail (json) ->
-          return
-        return
-      return
-
-      $ ->
-        receiveupdate()
-        setInterval receiveupdate, 5000
+    $ ->
+        # 定期的に返信が来ていないか確認
+        reply_receive()
+        setInterval reply_receive, 5000
         return
     return
 
 
 # メッセージを送った時に成功 or 失敗
 $(document).on 'ajax:success', '#message_form', (e) ->
-  console.log e.detail[0]
-  $('textarea#message').val ''
-  alert 'めっせーじをおくりました...'
-  return
+    console.log e.detail[0]
+    $('textarea#message').val ''
+    alert 'めっせーじをおくりました...'
+    return
 $(document).on 'ajax:error', '#message_form', (e) ->
-  console.log e.detail[2]
-  $('textarea#message').val ''
-  alert 'めっせーじをおくれなかったみたい...'
-  return
+    console.log e.detail[2]
+    alert 'めっせーじをおくれなかったみたい...'
+    return
 
-# ボタン・ボトルをクリックした時、投稿一覧外の領域をクリックした時の処理
+# ボタン全体にリンクを効かせる
 $(document).on 'click touchend', (e) ->
     $('.button-wrap .button').click ->
         if $(this).find('a').attr('target') == '_blank'
@@ -87,20 +87,4 @@ $(document).on 'click touchend', (e) ->
         else
             window.location = $(this).find('a').attr('href')
         false
-
-    ###
-    if !$(e.target).closest('.post_all').length and !$(e.target).closest('.unread-icon img.unread-icon').length
-        $('.post_all').fadeOut()
-    else if $(e.target).closest('.unread-icon img.unread-icon').length
-        if $('.post_all').is(':hidden')
-            $('.post_all').fadeIn()
-            $('#overlay').fadeIn()
-        else
-            $('.post_all').fadeOut()
-    $('#overlay, .post_all a').unbind().click ->
-        $('#overlay').fadeOut()
-        $('.post_all').fadeOut()
-    return
-    ###
-
 return
