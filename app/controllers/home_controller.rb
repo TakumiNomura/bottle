@@ -25,9 +25,6 @@ class HomeController < ApplicationController
               # 未読メッセージ：既読フラグがfalse かつ 自分が送っていない かつ 宛先が存在しないもの で最古のもの
               @unread_all = Post.where("read_flag is false").where.not(src_id: @user_id).where(dst_id: nil)
               @unread = @unread_all.first
-              @unread.update(dst_id: @user_id)
-              @receive = Receive.new(u_id: @unread.dst_id, mes_id: @unread.id)
-              @receive.save
               # 返信メッセージ：既読フラグがfalse かつ 宛先が自分のID で最古のもの
               @reply_all = Post.where("read_flag is false").where(dst_id: @user_id)
               @reply = @reply_all.first
