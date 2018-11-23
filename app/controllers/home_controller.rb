@@ -54,4 +54,5 @@ class HomeController < ApplicationController
     @message = Post.find(params[:id])
     @message.update(read_flag: true)   # 開いたら既読に
   end
+
 end
