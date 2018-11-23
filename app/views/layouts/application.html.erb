@@ -18,9 +18,8 @@
         <a href="/"><%= image_tag("logo.png") %></a>
       </div>
       <div class="header-menu">
-          <p>まいぺーじ</p>
-          <p>あばうと</p>
-          <p>はうとぅ</p>
+          <%=link_to "あばうと", "/home/about"%>
+          <%=link_to "はうとぅ", "/home/howto"%>
       </div>
     </header>
     <%= yield %>

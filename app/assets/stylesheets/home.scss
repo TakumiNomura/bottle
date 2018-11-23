@@ -79,12 +79,16 @@ header{
     opacity: 0.7;
 }
 .header-menu{
-    display: none;
     margin-right: 5%;
 }
-.header-menu p{
+.header-menu a{
     color: #5E91CD;
     margin: 0px 30px;
+    text-decoration: none;
+    transition: .4s;
+}
+.header-menu a:hover{
+    opacity: 0.7;
 }
 
 // スマホ向けヘッダー
@@ -376,11 +380,11 @@ input[type=number]::-webkit-outer-spin-button {
     resize: none;
 }
 
-.message-view .back{
+.back{
     position: relative;
 }
 
-.message-view .back a{
+.back a{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -390,7 +394,8 @@ input[type=number]::-webkit-outer-spin-button {
     border-bottom: 1px solid #888;
     margin: 20px 0px 60px 0px;
 }
-.message-view .back a:hover{
+
+.back a:hover{
     opacity: 0.7;
 }
 
