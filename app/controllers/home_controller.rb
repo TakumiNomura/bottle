@@ -57,9 +57,4 @@ class HomeController < ApplicationController
     @message = Post.find(params[:id])
     @message.update(read_flag: true)   # 開いたら既読に
   end
-
-  # メッセージ保存
-  def storage
-    @receive
-
 end
