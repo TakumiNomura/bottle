@@ -1,7 +1,7 @@
 <% if @loading == true  %>
 <div class="loading">
     <% if user_signed_in? %>
-        <h1 class="loading-text">こんにちは、<%= current_user.name %>さん。</h1>
+        <h1 class="loading-text">こんにちは、<br class="sp"><%= current_user.name %>さん。</h1>
     <% end %>
     <div class="animation"></div>
 </div>
@@ -10,7 +10,7 @@
     <!-- メッセージの入力 -->
     <div class="message-wrap">
         <%= form_with model: @post, id: "message_form", onsubmit: "return hiraganacheck()" do |f| %>
-            <%= f.text_area :message, :class => "textbox", :placeholder => "かいてみる？", :onblur => "return hiraganacheck()" %>
+            <%= f.text_area :message, :class => "textbox", :placeholder => "かいてみる ？", :onblur => "return hiraganacheck()" %>
 
             <%= image_submit_tag("bottle_slh.png", id: "send") %>
             <!-- 送信前に確認したい場合 -->
@@ -18,21 +18,26 @@
         <% end %>
     </div>
 
+    <!-- エラーメッセージ -->
     <div class="error">
-        <p>ひらがな　と　いちぶのきごう　だけ　にゅうりょく　してね</p>
+        <p>ひらがな と いちぶのきごう だけ <br class="sp">にゅうりょく してね</p>
+    </div>
+
+    <!-- 全メッセージ表示・書き込みボタン -->
+    <div class="icon-wrap">
+        <div class="bag-icon">
+            <%= image_tag("bag.png", :class => "bag-icon") %>
+        </div>
+
+        <div class="write-icon">
+            <%= image_tag("pencil.png", :class => "write-icon") %>
+        </div>
     </div>
 
     <!-- 未読が存在する時アイコンを表示 -->
     <div class="unread-icon">
+        <%= image_tag("new.png", :class => "unread-reply-icon") %>
         <%= image_tag("new.png", :class => "unread-icon") %>
-    </div>
-
-    <div class="unread-receive-icon">
-        <%= image_tag("new.png", :class => "unread-receive-icon") %>
-    </div>
-
-    <div class="write-icon">
-        <%= image_tag("pencil.png", :class => "write-icon") %>
     </div>
 
     <!-- グレーアウト -->
@@ -47,11 +52,11 @@
         message = $("#message").val();
         if(message.match(/[^ぁ-ん０-９0-9ー〜！？!?、。「」^ \r　\n\ \s]+/ )){
             $("#message").css("box-shadow", "0px 0px 10px red");
-            $(".error").fadeIn();
+            $(".error").css('visibility', 'visible');
             return false;
         }else{
             $("#message").css("box-shadow","");
-            $(".error").fadeOut();
+            $(".error").css('visibility', 'hidden');
             return true;
         }
     }
