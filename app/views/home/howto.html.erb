@@ -1,10 +1,35 @@
-<h1>つかいかた</h1>
+<div class="howto-view">
+    <div class="howto">
+        <h1 class="start">はじめかた</h1>
+        <p>
+            ついったー あかうんと で ろぐいん するだけ 。
+            だれでも かんたん に すぐ はじめられます 。
+        </p>
+        <p class="attention">
+            ！ ふろうとりっぷ が かってに ついーと すること は ありません ！
+        </p>
+        <%= image_tag("neko.png", :id => "cat") %>
+        <div class="border"></div>
+        <h1 class="howto">つかいかた</h1>
+        <p>
+            だれか に めっせーじ を おくったり 、
+            だれか が かいた めっせーじ を うけとること が できます 。</p>
+        <div class="howto-icon">
+            <div> <%= image_tag("bag.png", :class => "icon", :id => "bag") %> </div>
+            <p>いままで うけとった めっせーじ を みること が できます 。</p>
+            <div> <%= image_tag("pencil.png", :class => "icon", :id => "pen") %> </div>
+            <p>めっせーじ や おへんじ を かくこと が できます 。</p>
+            <div> <%= image_tag("bottle_slh.png", class: "icon", :id => "send") %> </div>
+            <p>かいた めっせーじ を おくります 。</p>
+            <div> <%= image_tag("new.png", :class => "icon", :id => "unread") %> </div>
+            <p>だれか の かいた めっせーじ を うけとり ます 。</p>
+            <div> <%= image_tag("new.png", :class => "icon", :id => "reply") %> </div>
+            <p>だれか が あなた に かいた おへんじ を みること が できます 。</p>
+        </div>
+    </div>
 
-<p>
-    かきたいこと　かいて　おしまい
-    へんじ　が　きたら　うれしい　ね
-</p>
-
-<div class="back">
-    <%= link_to "もどる", "/home/main", data: {"turbolinks" => false} %>
+    <div class="back">
+        <%= link_to "もどる", "/home/main", data: {"turbolinks" => false} %>
+    </div>
 </div>
+<div class="back-img" style="height: 100px; margin: 60px 0px;"></div>

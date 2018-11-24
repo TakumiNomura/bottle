@@ -18,8 +18,8 @@
         <a href="/"><%= image_tag("logo.png") %></a>
       </div>
       <div class="header-menu">
-          <%=link_to "あばうと", "/home/about"%>
-          <%=link_to "はうとぅ", "/home/howto"%>
+          <%=link_to "あばうと", "/home/about", :id => "about"%>
+          <%=link_to "はうとぅ", "/home/howto", :id => "howto"%>
       </div>
     </header>
     <%= yield %>
