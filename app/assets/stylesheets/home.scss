@@ -93,7 +93,6 @@ header{
     opacity: 0.7;
 }
 .header-menu{
-    display: none;
     margin-right: 5%;
 }
 .header-menu a{
@@ -104,6 +103,9 @@ header{
 }
 .header-menu a:hover{
     opacity: 0.7;
+}
+.header-menu a#about{
+    display: none;
 }
 
 // スマホ向けヘッダー
@@ -528,5 +530,107 @@ img.bag-icon{
 @media screen and (max-width: 767px) and (min-height: 800px) {
     .message-wrap{
         margin-top: 80px;
+    }
+}
+
+
+/* はうとぅ */
+.howto-view{
+    color: #555555;
+    padding: 30px 20%;
+}
+.howto h1{
+    border-left: 4px solid #5E91CD;
+    padding-left: 10px;
+    font-family: 'Hiragino Sans';
+    font-weight: 300;
+}
+.howto h1.howto{
+    margin-top: 60px;
+}
+.howto p.attention{
+    text-align: center;
+    color: #D45D87;
+    font-weight: 700;
+    margin-top: 50px;
+}
+.howto img#cat{
+    position: relative;
+    height: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.howto-icon{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    margin: 50px auto;
+}
+.howto-icon div{
+    width: 10%;
+}
+.howto-icon div img{
+    height: 60px;
+    width: auto;
+}
+.howto-icon div img#pen, .howto-icon div img#bag{
+    border: 1px solid #888;
+    border-radius: 30px;
+    background-color: white;
+    transform: scale(0.75);
+}
+.howto-icon div img#send{
+    transform: scale(0.85) translate(5px, 5px) rotate(30deg);
+    filter: invert(60%);
+}
+.howto-icon div img#reply{
+    filter: invert(1);
+}
+.howto-icon p{
+    width: 87%;
+    margin-left: 3%;
+}
+
+/* スマホ向けはうとぅ */
+@media screen and (max-width: 767px) {
+    .howto-view{
+        padding: 15px 10%;
+    }
+    .howto h1{
+        font-size: 24px;
+    }
+    .howto h1.howto{
+        margin-top: 60px;
+    }
+    .howto-icon{
+        width: auto;
+        margin-top: 0px;
+    }
+    .howto-icon div{
+        margin-top: 40px;
+        width: 100%;
+    }
+    .howto-icon div img{
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .howto-icon div img#pen, .howto-icon div img#bag{
+        border: 1px solid #888;
+        border-radius: 30px;
+        background-color: white;
+        transform: scale(0.75) translateX(-50%);
+    }
+    .howto-icon div img#send{
+        transform: scale(0.85) translate(-50%, 5px) rotate(30deg);
+        filter: invert(60%);
+    }
+    .howto-icon div img#reply{
+        filter: invert(1);
+    }
+    .howto-icon p{
+        width: 100%;
     }
 }

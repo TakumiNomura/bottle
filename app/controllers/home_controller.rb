@@ -9,10 +9,10 @@ class HomeController < ApplicationController
   def main
       # メッセージ表示から戻ってきた時以外はローディングアニメーションを表示
       @path = Rails.application.routes.recognize_path(request.referer)
-      if @path[:action] == "message"    # 前のページがmessageアクションだった場合
-          @loading = false
-      else
+      if @path[:action] == "top"    # 前のページがmessageアクションだった場合
           @loading = true
+      else
+          @loading = false
       end
 
       respond_to do |format|
