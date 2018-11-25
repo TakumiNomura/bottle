@@ -22,7 +22,7 @@ $ ->
         else
             $('.message-wrap .textbox, input#send').css('visibility', 'hidden')
             $("#message").css("box-shadow","");
-            $(".error").fadeOut();
+            $(".error").css('visibility', 'hidden');
         return
 
     # 未読アイコン(赤)をクリックした時
