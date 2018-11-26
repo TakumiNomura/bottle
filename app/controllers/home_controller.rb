@@ -52,7 +52,9 @@ class HomeController < ApplicationController
   # メッセージ詳細表示
   def message
     @message = Post.find(params[:id])
-    @message.update(read_flag: true)   # 開いたら既読に
+    @message.update(read_flag: true, dst_id: current_user.id)   # 開いたら既読に
+    @receive = Receive.new(u_id: current_user.id, mes_id: @message.id)
+    @receive.save
   end
 
 end
