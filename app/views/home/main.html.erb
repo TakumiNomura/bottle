@@ -6,6 +6,18 @@
     <div class="animation"></div>
 </div>
 <% end %>
+
+<!-- 今まで受け取ったメッセージ -->
+<div class="all-message">
+    <% @message.each do |post| %>
+        <div class="message">
+            <p class="date"><%= post.created_at.strftime("%Y %m %d") %></p>
+            <%= link_to "×", "/home/receives/#{post.id}", method: :delete, data: {"turbolinks" => false} %>
+            <p class="message"><%= post.message %></p>
+        </div>
+    <% end %>
+</div>
+
 <div class="contents-wrap">
     <!-- メッセージの入力 -->
     <div class="message-wrap">
@@ -39,10 +51,11 @@
         <%= image_tag("new.png", :class => "unread-reply-icon") %>
         <%= image_tag("new.png", :class => "unread-icon") %>
     </div>
-
-    <!-- グレーアウト -->
-    <div id="overlay"></div>
 </div>
+
+<!-- グレーアウト -->
+<div id="overlay"></div>
+
 <div class="back-img">
     <%= image_tag("neko.png", :id => "cat") %>
 </div>
