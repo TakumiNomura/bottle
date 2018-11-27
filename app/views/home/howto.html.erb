@@ -9,12 +9,17 @@
             ！ ふろうとりっぷ が かってに ついーと すること は ありません ！
         </p>
         <%= image_tag("neko.png", :id => "cat") %>
+        <div class="button">
+            <%= link_to 'ついったーでろぐいん', user_twitter_omniauth_authorize_path %>
+        </div>
         <div class="border"></div>
         <h1 class="howto">つかいかた</h1>
         <p>
             だれか に めっせーじ を おくったり 、
             だれか が かいた めっせーじ を うけとること が できます 。</p>
         <div class="howto-icon">
+            <div> <%= image_tag("enquete.png", :class => "icon", :id => "enquete") %> </div>
+            <p>こんご の かいぜん の ため あんけーと に ごきょうりょく おねがいします 。</p>
             <div> <%= image_tag("bag.png", :class => "icon", :id => "bag") %> </div>
             <p>いままで うけとった めっせーじ を みること が できます 。</p>
             <div> <%= image_tag("pencil.png", :class => "icon", :id => "pen") %> </div>

@@ -68,7 +68,10 @@ $ ->
             if json.id > 0  # メッセージが見つかった時
                 window.location.href = '/home/message/' + json.id   # 見つかったメッセージに遷移
             else    # メッセージが見つからない時
-                alert "みつからなかったみたい…"
+                $('.send-info').css('background', 'rgba(94,145,205,0.2)');
+                $('.send-info p').html("みつからなかったみたい");
+                $('.send-info').fadeIn();
+                $('.send-info').delay(1500).fadeOut();
             return
         ).fail (json) ->
             return
