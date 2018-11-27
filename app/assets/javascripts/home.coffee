@@ -45,7 +45,7 @@ $ ->
         return
 
     # 返信未読アイコン(緑)をクリックした時
-    $('.unread-receive-icon img.unread-receive-icon').click ->
+    $('.unread-icon img.unread-reply-icon').click ->
         window.location.href = '/home/message/' + messageid # 該当メッセージへ遷移
         return
 
@@ -55,7 +55,7 @@ $ ->
             $.ajax(url: location.href + '.json').done((json) ->
                 if json.dst_id == json.user_id  # 自身のユーザIDと宛先ユーザIDが同じとき
                     messageid = json.id # そのメッセージのIDを取得
-                    $('.unread-receive-icon').fadeIn(); # 返信未読アイコンを表示
+                    $('.unread-reply-icon').fadeIn(); # 返信未読アイコンを表示
                 return
             ).fail (json) ->
                 return
