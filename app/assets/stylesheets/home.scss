@@ -190,6 +190,10 @@ header{
 }
 
 /* メインページ */
+.contents-wrap{
+    position: relative;
+    z-index: 1;
+}
 .message-wrap{
     color: #fff;
     font-family: Hiragino Sans;
@@ -310,6 +314,75 @@ header{
 .post_all .message_item{
     border-bottom: 1px solid gray;
     padding-bottom: 20px;
+}
+
+// 受け取ったメッセージ一覧
+.all-message{
+    display: none;
+    width: 650px;
+    padding: 30px;
+    background: rgba(94,145,205,0.1);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #555;
+    overflow: scroll;
+    max-height: 50vh;
+    z-index: 2;
+    border-radius: 4px;
+}
+.all-message div.message{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #aaa;
+    padding: 15px;
+}
+.all-message .message p.date{
+    width: 90%;
+    margin: 0;
+    font-size: 14px;
+}
+.all-message .message a{
+    display: block;
+    width: 5%;
+    margin-left: 5%;
+    text-decoration: none;
+    color: #D45D87;
+    font-family: 'Hiragino Sans';
+    font-weight: 700;
+    transition: .4s;
+}
+.all-message .message a:hover{
+    opacity: 0.8;
+    text-shadow: 1px 1px 2px rgba(50, 50, 150, 0.7);
+}
+.all-message .message p.message{
+    width: 100%;
+    text-align: left;
+    margin: 5px 0px 0px 0px;
+}
+
+@media screen and (max-width: 1100px) {
+    .all-message{
+        width: 550px;
+        max-height: 30vh;
+        top: 30%;
+    }
+}
+
+// スマホ向け
+@media screen and (max-width: 767px) {
+    .all-message{
+        width: 90vw;
+        padding: 15px;
+        overflow: scroll;
+        max-height: 30vh;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 // 未読アイコン
@@ -446,10 +519,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .icon-wrap .write-icon img:hover, .icon-wrap .bag-icon img:hover {
     filter: invert(80%);
-}
-
-img.bag-icon{
-    display: none;
 }
 
 @media screen and (max-width: 767px) {

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'home/main'
   post "home/main" => "home#create"
   post "home/message/:id" => "home#reply"
+  delete "home/receives/:id" => "home#destroy"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "home#top"
   devise_for :users, controllers: {

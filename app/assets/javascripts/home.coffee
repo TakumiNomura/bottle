@@ -18,11 +18,25 @@ $ ->
     # 書き込みボタンをクリックした時、表示・非表示切り替え
     $('.write-icon img.write-icon').click ->
         if $('.message-wrap .textbox').css('visibility') == 'hidden'
+            if $('.all-message').css('display') == 'block'
+                $('.all-message').fadeOut();
             $('.message-wrap .textbox, input#send').css('visibility', 'visible')
         else
             $('.message-wrap .textbox, input#send').css('visibility', 'hidden')
             $("#message").css("box-shadow","");
             $(".error").css('visibility', 'hidden');
+        return
+
+    # かばんボタンをクリックした時、表示・非表示切り替え
+    $('.bag-icon img.bag-icon').click ->
+        if $('.all-message').css('display') == 'none'
+            if $('.message-wrap .textbox').css('visibility') == 'visible'
+                $('.message-wrap .textbox, input#send').css('visibility', 'hidden')
+                $("#message").css("box-shadow","");
+                $(".error").css('visibility', 'hidden');
+            $('.all-message').fadeIn();
+        else
+            $('.all-message').fadeOut();
         return
 
     # 未読アイコン(赤)をクリックした時
@@ -87,4 +101,4 @@ $(document).on 'click touchend', (e) ->
         else
             window.location = $(this).find('a').attr('href')
         false
-return
+    return

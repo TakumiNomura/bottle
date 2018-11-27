@@ -14,8 +14,11 @@ class HomeController < ApplicationController
       else
           @loading = false
       end
-
       respond_to do |format|
+          # ユーザごとに保存されているメッセージを取得
+          @message_all = Receive.where(u_id: current_user.id)
+          @message = @message_all.map{|post| Post.find(post.mes_id)}
+
           format.html {
               @user = current_user.id
           } # html形式でアクセスがあった場合
@@ -57,6 +60,12 @@ class HomeController < ApplicationController
       if Receive.where(mes_id: @message.id).empty?
           @receive.save
       end
+  end
+
+  def destroy
+      @message = Receive.find_by(mes_id: params[:id])
+      @message.destroy
+      redirect_to "/home/main"
   end
 
 end
