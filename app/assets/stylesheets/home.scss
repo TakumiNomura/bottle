@@ -149,7 +149,8 @@ header{
     font-weight: 300;
     font-size: 24px;
 }
-.main-view .button{
+.main-view .button, .howto .button{
+    text-align: center;
     width: 400px;
     margin-bottom: 20px;
     border-radius: 2px;
@@ -161,11 +162,19 @@ header{
     cursor: pointer;
 }
 
-.main-view .button:hover{
+.howto .button{
+    margin: 30px auto;
+}
+
+.main-view .button#howto{
+    display: none;
+}
+
+.main-view .button:hover, .howto .button:hover{
     opacity: 0.8;
 }
 
-.main-view .button a{
+.main-view .button a, .howto .button a{
     color: #FFF;
     text-decoration: none;
     width: 360px;
@@ -186,6 +195,15 @@ header{
     }
     .main-view .copy p{
         font-size: 18px;
+    }
+    .main-view .button#howto{
+        display: block;
+    }
+    .howto .button{
+        width: 100%;
+    }
+    .howto .button a{
+        width: auto;
     }
 }
 
@@ -531,7 +549,7 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 0 60px;
 }
 
-.icon-wrap img.write-icon, .icon-wrap img.bag-icon{
+.icon-wrap img.write-icon, .icon-wrap img.bag-icon, .icon-wrap img.enquete-icon {
     height: 60px;
     margin-left: 10px;
     border: 1px solid #888;
@@ -541,19 +559,19 @@ input[type=number]::-webkit-outer-spin-button {
     z-index: 5;
     cursor: pointer;
 }
-.icon-wrap .write-icon img:hover, .icon-wrap .bag-icon img:hover {
+.icon-wrap .write-icon img:hover, .icon-wrap .bag-icon img:hover, .icon-wrap .enquete-icon img:hover {
     filter: invert(80%);
 }
 
 @media screen and (max-width: 767px) {
-    .icon-wrap img.write-icon, .icon-wrap img.bag-icon {
+    .icon-wrap img.write-icon, .icon-wrap img.bag-icon, .icon-wrap img.enquete-icon {
         height: 50px;
         right: 50px;
     }
     .icon-wrap{
         padding: 0 30px;
     }
-    .icon-wrap .write-icon img:hover, .icon-wrap .bag-icon img:hover {
+    .icon-wrap .write-icon img:hover, .icon-wrap .bag-icon img:hover, .icon-wrap .enquete-icon img:hover {
         filter: invert(0%);
     }
 }
@@ -668,7 +686,7 @@ input[type=number]::-webkit-outer-spin-button {
     height: 60px;
     width: auto;
 }
-.howto-icon div img#pen, .howto-icon div img#bag{
+.howto-icon div img#pen, .howto-icon div img#bag, .howto-icon div img#enquete{
     border: 1px solid #888;
     border-radius: 30px;
     background-color: white;
@@ -710,7 +728,7 @@ input[type=number]::-webkit-outer-spin-button {
         left: 50%;
         transform: translateX(-50%);
     }
-    .howto-icon div img#pen, .howto-icon div img#bag{
+    .howto-icon div img#pen, .howto-icon div img#bag, .howto-icon div img#enquete{
         border: 1px solid #888;
         border-radius: 30px;
         background-color: white;
