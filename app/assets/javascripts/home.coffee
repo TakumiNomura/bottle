@@ -86,11 +86,17 @@ $ ->
 $(document).on 'ajax:success', '#message_form', (e) ->
     console.log e.detail[0]
     $('textarea#message').val ''
-    alert 'めっせーじをおくりました...'
+    $('.send-info').css('background', 'rgba(94,145,205,0.2)');
+    $('.send-info p').html("めっせーじ を おくりました");
+    $('.send-info').fadeIn();
+    $('.send-info').delay(1500).fadeOut();
     return
 $(document).on 'ajax:error', '#message_form', (e) ->
     console.log e.detail[2]
-    alert 'めっせーじをおくれなかったみたい...'
+    $('.send-info').css('background', 'rgba(212,93,135,0.2)');
+    $('.send-info p').html("めっせーじ を おくれませんでした");
+    $('.send-info').fadeIn();
+    $('.send-info').delay(1500).fadeOut();
     return
 
 # ボタン全体にリンクを効かせる

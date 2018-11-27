@@ -332,6 +332,22 @@ header{
     z-index: 2;
     border-radius: 4px;
 }
+
+.send-info{
+    display: none;
+    width: 650px;
+    padding: 30px;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #555;
+    overflow: scroll;
+    max-height: 50vh;
+    z-index: 2;
+    border-radius: 4px;
+}
+
 .all-message div.message{
     display: flex;
     align-items: center;
@@ -380,6 +396,14 @@ header{
         overflow: scroll;
         max-height: 30vh;
         top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .send-info{
+        width: 90vw;
+        padding: 15px;
+        position: fixed;
+        top: 10%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
