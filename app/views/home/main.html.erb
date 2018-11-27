@@ -8,16 +8,17 @@
 <% end %>
 <div class="contents-wrap">
     <!-- メッセージの入力 -->
+
     <div class="message-wrap">
         <%= form_with model: @post, id: "message_form", onsubmit: "return hiraganacheck()" do |f| %>
             <%= f.text_area :message, :class => "textbox", :placeholder => "かいてみる ？", :onblur => "return hiraganacheck()" %>
-
             <%= image_submit_tag("bottle_slh.png", id: "send") %>
+
+
             <!-- 送信前に確認したい場合 -->
             <!--<%= image_submit_tag("send.png", id: "send", data: { confirm: "メッセージを放流しますか？"}) %>-->
         <% end %>
     </div>
-
     <!-- エラーメッセージ -->
     <div class="error">
         <p>ひらがな と いちぶのきごう だけ <br class="sp">にゅうりょく してね</p>
@@ -48,16 +49,27 @@
 </div>
 
 <script>
-    function hiraganacheck() {
-        message = $("#message").val();
-        if(message.match(/[^ぁ-ん０-９0-9ー〜！？!?、。「」^ \r　\n\ \s]+/ )){
-            $("#message").css("box-shadow", "0px 0px 10px red");
-            $(".error").css('visibility', 'visible');
-            return false;
-        }else{
-            $("#message").css("box-shadow","");
-            $(".error").css('visibility', 'hidden');
-            return true;
-        }
+
+function hiraganacheck() {
+    message = $("#message").val();
+    var ng = ['ばか'];//禁止ワード
+   if(message.match(ng) !=null){
+         //$("#message").css("box-shadow", "0px 0px 10px red");
+         //$(".error").css('visibility', 'visible');
+         alert('ふてきせつな　もじが　ふまれています');
+         return false;
+     }
+   if(message.match(/[^ぁ-ん０-９0-9ー〜！？!?、。「」^ \r　\n\ \s]+/ )){
+        $("#message").css("box-shadow", "0px 0px 10px red");
+        $(".error").css('visibility', 'visible');
+        return false;
     }
+
+   else{
+        $("#message").css("box-shadow","");
+        $(".error").css('visibility', 'hidden');
+        return true;
+    }
+}
+
 </script>

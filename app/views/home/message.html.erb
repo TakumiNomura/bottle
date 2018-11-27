@@ -6,8 +6,8 @@
 
     <div class="message-wrap">
         <%= form_with model: @post, id: "message_form", onsubmit: "return hiraganacheck()" do |f| %>
-            <%= f.text_area :message, :class => "textbox", :placeholder => "おへんじ かいてみる ？", :onblur => "return hiraganacheck()" %>
 
+            <%= f.text_area :message, :class => "textbox", :placeholder => "おへんじ かいてみる ？", :onblur => "return hiraganacheck()" %>
             <%= image_submit_tag("bottle_slh.png", id: "send") %>
             <!-- 送信前に確認したい場合 -->
             <!--<%= image_submit_tag("send.png", id: "send", data: { confirm: "メッセージを放流しますか？"}) %>-->
@@ -25,13 +25,16 @@
 </div>
 
 <script>
+
     function hiraganacheck() {
         message = $("#message").val();
         if(message.match(/[^ぁ-ん０-９0-9ー〜！？!?、。「」^ \r　\n\ \s]+/ )){
             $("#message").css("box-shadow", "0px 0px 10px red");
             $(".error").fadeIn();
             return false;
-        }else{
+        }
+
+        else{
             $("#message").css("box-shadow","");
             $(".error").fadeOut();
             return true;
