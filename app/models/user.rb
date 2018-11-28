@@ -16,9 +16,9 @@ class User < ApplicationRecord
           # email:    User.dummy_unique_email(auth),
           # email:    email,
           # password: Devise.friendly_token[0, 20],
-          image_url: auth.image,
-          name: auth.name,
-          nickname: auth.nickname
+          image_url: auth.info.image,
+          name: auth.info.name,
+          nickname: auth.info.nickname
           )
     end
 
