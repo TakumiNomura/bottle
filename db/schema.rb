@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_22_035258) do
+ActiveRecord::Schema.define(version: 2018_11_29_062616) do
 
   create_table "posts", force: :cascade do |t|
     t.text "message"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2018_11_22_035258) do
     t.boolean "read_flag", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "anc_id"
   end
 
   create_table "receives", force: :cascade do |t|
@@ -26,6 +27,7 @@ ActiveRecord::Schema.define(version: 2018_11_22_035258) do
     t.integer "mes_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "reply_flag", default: false, null: false
   end
 
   create_table "users", force: :cascade do |t|

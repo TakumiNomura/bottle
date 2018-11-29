@@ -10,7 +10,7 @@
         </p>
         <%= image_tag("neko.png", :id => "cat") %>
         <!-- サインインされていないとき -->
-        <% if !user_signed_in? %>
+        <% unless user_signed_in? %>
             <div class="button">
                 <%= link_to 'ついったーでろぐいん', user_twitter_omniauth_authorize_path %>
             </div>
