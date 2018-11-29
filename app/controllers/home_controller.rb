@@ -16,7 +16,7 @@ class HomeController < ApplicationController
       end
       respond_to do |format|
           # ユーザごとに保存されているメッセージを取得
-          @message_all = Receive.where(u_id: current_user.id)
+          @message_all = Receive.where(u_id: current_user.id).order(created_at: "DESC")
           @message = @message_all.map{|post| Post.find(post.mes_id)}
 
           format.html {
