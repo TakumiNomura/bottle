@@ -15,7 +15,11 @@
     <!-- ヘッダー -->
     <header>
       <div class="header-logo">
-        <a href="/"><%= image_tag("logo.png") %></a>
+        <% if current_page?("/") || current_page?("/home/top") %>
+          <a href="/"><%= image_tag("logo.png") %></a>
+        <% else %>
+          <a href="/home/main"><%= image_tag("logo.png") %></a>
+        <% end %>
       </div>
       <div class="header-menu">
           <%=link_to "あばうと", "/home/about", :id => "about"%>

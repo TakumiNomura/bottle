@@ -78,9 +78,9 @@ $ ->
         return
 
     $ ->
-        # 定期的に返信が来ていないか確認
+        # 定期的に返信が来ていないか10秒毎に確認
         reply_receive()
-        setInterval reply_receive, 5000
+        setInterval reply_receive, 10000
         return
     return
 

@@ -9,9 +9,12 @@
             ！ ふろうとりっぷ が かってに ついーと すること は ありません ！
         </p>
         <%= image_tag("neko.png", :id => "cat") %>
-        <div class="button">
-            <%= link_to 'ついったーでろぐいん', user_twitter_omniauth_authorize_path %>
-        </div>
+        <!-- サインインされていないとき -->
+        <% if !user_signed_in? %>
+            <div class="button">
+                <%= link_to 'ついったーでろぐいん', user_twitter_omniauth_authorize_path %>
+            </div>
+        <% end %>
         <div class="border"></div>
         <h1 class="howto">つかいかた</h1>
         <p>
@@ -34,7 +37,11 @@
     </div>
 
     <div class="back">
-        <%= link_to "もどる", :back, data: {"turbolinks" => false} %>
+        <% if user_signed_in? %>
+          <%= link_to "もどる", "/home/main", data: {"turbolinks" => false} %>
+        <% else %>
+          <%= link_to "もどる", "/home/top", data: {"turbolinks" => false} %>
+        <% end %>
     </div>
 </div>
 <div class="back-img" style="height: 100px; margin: 60px 0px;"></div>
