@@ -1,10 +1,11 @@
-<% if @loading == true  %>
+<% if $loading == true  %>
 <div class="loading">
     <% if user_signed_in? %>
         <h1 class="loading-text">こんにちは、<br class="sp"><%= current_user.name %>さん。</h1>
     <% end %>
     <div class="animation"></div>
 </div>
+<% $loading = false %>
 <% end %>
 
 <!-- 今まで受け取ったメッセージ -->

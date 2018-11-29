@@ -18,7 +18,11 @@
         <% if current_page?("/") || current_page?("/home/top") %>
           <a href="/"><%= image_tag("logo.png") %></a>
         <% else %>
-          <a href="/home/main"><%= image_tag("logo.png") %></a>
+          <% unless user_signed_in? %>
+            <a href="/"><%= image_tag("logo.png") %></a>
+          <% else %>
+            <a href="/home/main"><%= image_tag("logo.png") %></a>
+          <% end %>
         <% end %>
       </div>
       <div class="header-menu">

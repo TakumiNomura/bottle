@@ -1,19 +1,15 @@
 class HomeController < ApplicationController
   # before_action :authenticate_user!
+  $loading = false
   def top
 #     if user_signed_in?
 #       redirect_to "/home/main"
 #     end
+      $loading = true
   end
 
   def main
       # メッセージ表示から戻ってきた時以外はローディングアニメーションを表示
-      @path = Rails.application.routes.recognize_path(request.referer)
-      if @path[:action] == "top"    # 前のページがmessageアクションだった場合
-          @loading = true
-      else
-          @loading = false
-      end
       respond_to do |format|
           # ユーザごとに保存されているメッセージを取得
           @message_all = Receive.where(u_id: current_user.id).order(created_at: "DESC")
