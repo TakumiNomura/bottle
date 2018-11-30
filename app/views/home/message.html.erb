@@ -1,8 +1,24 @@
 <!-- メッセージ -->
 <div class="message-view">
+    <% if @message_history.nil? %>
     <div class="message-wrap">
         <div class="text"><%= simple_format(@message.message) %></div>
     </div>
+    <% else %>
+        <% @message_history.each do |post| %>
+            <div class="message-wrap">
+                <% if post.src_id == current_user.id %>
+                <div class="text my">
+                    <%= simple_format(post.message) %>
+                </div>
+            <% else %>
+                <div class="text">
+                    <%= simple_format(post.message) %>
+                </div>
+            <% end %>
+            </div>
+        <% end %>
+    <% end %>
 
     <div class="message-wrap">
         <%= form_with model: @post, id: "message_form", onsubmit: "return hiraganacheck()" do |f| %>

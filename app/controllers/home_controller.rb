@@ -42,7 +42,12 @@ class HomeController < ApplicationController
   # 返信する際
   def reply
       @replyto = Post.find(params[:id])
-      @reply = Post.new(message:params[:message], read_flag:"false", src_id: current_user.id, dst_id: @replyto.src_id)
+      # 過去の履歴を取得
+      if @replyto.anc_id.nil?
+          @reply = Post.new(message:params[:message], read_flag:"false", src_id: current_user.id, dst_id: @replyto.src_id, anc_id: @replyto.id)
+      else
+          @reply = Post.new(message:params[:message], read_flag:"false", src_id: current_user.id, dst_id: @replyto.src_id, anc_id: @replyto.anc_id)
+      end
       if !@reply.save
           render :new, notice: "Error"
       end
@@ -55,6 +60,9 @@ class HomeController < ApplicationController
       @receive = Receive.new(u_id: current_user.id, mes_id: @message.id)
       if Receive.where(mes_id: @message.id).empty?
           @receive.save
+      end
+      if @message.anc_id.present?
+          @message_history = Post.where(anc_id: @message.anc_id).or(Post.where(id: @message.anc_id))
       end
   end
 
