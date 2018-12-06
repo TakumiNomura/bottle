@@ -104,9 +104,6 @@ header{
 .header-menu a:hover{
     opacity: 0.7;
 }
-.header-menu a#about{
-    display: none;
-}
 
 // スマホ向けヘッダー
 @media screen and (max-width: 767px) {
@@ -648,12 +645,12 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 
-/* はうとぅ */
-.howto-view{
+/* はうとぅ・あばうと */
+.howto-view, .about-view{
     color: #555555;
     padding: 30px 20%;
 }
-.howto h1{
+.howto h1, .about h1{
     border-left: 4px solid #5E91CD;
     padding-left: 10px;
     font-family: 'Hiragino Sans';
@@ -705,6 +702,8 @@ input[type=number]::-webkit-outer-spin-button {
 .howto-icon p{
     width: 87%;
     margin-left: 3%;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 /* スマホ向けはうとぅ */
@@ -746,5 +745,20 @@ input[type=number]::-webkit-outer-spin-button {
     }
     .howto-icon p{
         width: 100%;
+    }
+}
+
+/* あばうと */
+.about-view .about p{
+    line-height: 2.0;
+}
+
+/* スマホ向けあばうと */
+@media screen and (max-width: 767px) {
+    .about-view{
+        padding: 15px 10%;
+    }
+    .about h1{
+        font-size: 24px;
     }
 }
