@@ -1,13 +1,3 @@
-<% if $loading == true  %>
-<div class="loading">
-    <% if user_signed_in? %>
-        <h1 class="loading-text">こんにちは、<br class="sp"><%= current_user.name %>さん。</h1>
-    <% end %>
-    <div class="animation"></div>
-</div>
-<% $loading = false %>
-<% end %>
-
 <!-- 今まで受け取ったメッセージ -->
 <div class="all-message">
     <% @message.each do |post| %>
@@ -24,16 +14,16 @@
 
     <div class="message-wrap">
         <%= form_with model: @post, id: "message_form", onsubmit: "return hiraganacheck()" do |f| %>
-            <%= f.text_area :message, :class => "textbox", :placeholder => "かいてみる ？", :onblur => "return hiraganacheck()" %>
+            <%= f.text_area :message, :class => "textbox", :placeholder => "かいてみる？", :onblur => "return hiraganacheck()" %>
             <%= image_submit_tag("bottle_slh.png", id: "send") %>
 
             <!-- 送信前に確認したい場合 -->
-            <!--<%= image_submit_tag("send.png", id: "send", data: { confirm: "メッセージを放流しますか？"}) %>-->
+            <!--<%= image_submit_tag("send.png", id: "send", data: { confirm: "めっせーじを おくりますか？"}) %>-->
         <% end %>
     </div>
     <!-- エラーメッセージ -->
     <div class="error">
-        <p>ひらがな と いちぶのきごう だけ <br class="sp">にゅうりょく してね</p>
+        <p>ひらがなと いちぶの きごうだけ <br class="sp">にゅうりょく してね</p>
     </div>
 
     <!-- 全メッセージ表示・書き込みボタン -->

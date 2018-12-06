@@ -1,11 +1,11 @@
 class HomeController < ApplicationController
   # before_action :authenticate_user!
-  $loading = false
+  @loading = false
   def top
 #     if user_signed_in?
 #       redirect_to "/home/main"
 #     end
-      $loading = true
+      @loading = true
   end
 
   def main
@@ -14,6 +14,7 @@ class HomeController < ApplicationController
           # ユーザごとに保存されているメッセージを取得
           @message_all = Receive.where(u_id: current_user.id).order(created_at: "DESC")
           @message = @message_all.map{|post| Post.find(post.mes_id)}
+          @loading = @loading
 
           format.html {
               @user = current_user.id

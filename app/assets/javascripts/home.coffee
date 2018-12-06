@@ -4,13 +4,17 @@
 
 # ローディングアニメーション
 stopload = ->
-    $('.loading').delay(1000).fadeOut 700
-    return
+    $('.loading').delay(1000).fadeOut 400
+    if window.location.href.match(/\/home\/loading/)
+        window.location.href = '/home/main'
+        return
 
 $(window).on 'load', ->
     # ロードし終わったらローディング画面をフェードアウト
     $('.loading').delay(1000).fadeOut 400
-    return
+    if window.location.href.match(/\/home\/loading/)
+        window.location.href = '/home/main'
+        return
 
 $ ->
     messageid = ''  # 返信できたメッセージID格納用

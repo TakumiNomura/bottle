@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/loading'
   get 'home/about'
   get 'home/howto'
   get 'home/message/:id' => "home#message"

@@ -23,10 +23,10 @@
     <div class="message-wrap">
         <%= form_with model: @post, id: "message_form", onsubmit: "return hiraganacheck()" do |f| %>
 
-            <%= f.text_area :message, :class => "textbox", :placeholder => "おへんじ かいてみる ？", :onblur => "return hiraganacheck()" %>
+            <%= f.text_area :message, :class => "textbox", :placeholder => "おへんじ かいてみる？", :onblur => "return hiraganacheck()" %>
             <%= image_submit_tag("bottle_slh.png", id: "send") %>
             <!-- 送信前に確認したい場合 -->
-            <!--<%= image_submit_tag("send.png", id: "send", data: { confirm: "メッセージを放流しますか？"}) %>-->
+            <!--<%= image_submit_tag("send.png", id: "send", data: { confirm: "めっせーじを おくりますか？"}) %>-->
         <% end %>
     </div>
     <div class="icon-wrap">
@@ -36,7 +36,7 @@
     </div>
 
     <div class="back">
-        <%= link_to "もどる", :back, data: {"turbolinks" => false} %>
+        <%= link_to "もどる", '/home/main', data: {"turbolinks" => false} %>
     </div>
 </div>
 <!-- 送信画面  -->
