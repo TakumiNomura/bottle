@@ -1,0 +1,6 @@
+<div class="loading">
+    <% if user_signed_in? %>
+        <h1 class="loading-text">こんにちは、<br class="sp"><%= current_user.name %>さん。</h1>
+    <% end %>
+    <div class="animation"></div>
+</div>

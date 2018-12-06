@@ -1,16 +1,32 @@
 <!-- メッセージ -->
 <div class="message-view">
+    <% if @message_history.nil? %>
     <div class="message-wrap">
         <div class="text"><%= simple_format(@message.message) %></div>
     </div>
+    <% else %>
+        <% @message_history.each do |post| %>
+            <div class="message-wrap">
+                <% if post.src_id == current_user.id %>
+                <div class="text my">
+                    <%= simple_format(post.message) %>
+                </div>
+            <% else %>
+                <div class="text">
+                    <%= simple_format(post.message) %>
+                </div>
+            <% end %>
+            </div>
+        <% end %>
+    <% end %>
 
     <div class="message-wrap">
         <%= form_with model: @post, id: "message_form", onsubmit: "return hiraganacheck()" do |f| %>
 
-            <%= f.text_area :message, :class => "textbox", :placeholder => "おへんじ かいてみる ？", :onblur => "return hiraganacheck()" %>
+            <%= f.text_area :message, :class => "textbox", :placeholder => "おへんじ かいてみる？", :onblur => "return hiraganacheck()" %>
             <%= image_submit_tag("bottle_slh.png", id: "send") %>
             <!-- 送信前に確認したい場合 -->
-            <!--<%= image_submit_tag("send.png", id: "send", data: { confirm: "メッセージを放流しますか？"}) %>-->
+            <!--<%= image_submit_tag("send.png", id: "send", data: { confirm: "めっせーじを おくりますか？"}) %>-->
         <% end %>
     </div>
     <div class="icon-wrap">
@@ -20,7 +36,7 @@
     </div>
 
     <div class="back">
-        <%= link_to "もどる", :back, data: {"turbolinks" => false} %>
+        <%= link_to "もどる", '/home/main', data: {"turbolinks" => false} %>
     </div>
 </div>
 <!-- 送信画面  -->

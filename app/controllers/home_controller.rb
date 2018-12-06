@@ -8,12 +8,6 @@ class HomeController < ApplicationController
 
   def main
       # メッセージ表示から戻ってきた時以外はローディングアニメーションを表示
-      @path = Rails.application.routes.recognize_path(request.referer)
-      if @path[:action] == "top"    # 前のページがmessageアクションだった場合
-          @loading = true
-      else
-          @loading = false
-      end
       respond_to do |format|
           # ユーザごとに保存されているメッセージを取得
           @message_all = Receive.where(u_id: current_user.id).order(created_at: "DESC")
@@ -46,7 +40,12 @@ class HomeController < ApplicationController
   # 返信する際
   def reply
       @replyto = Post.find(params[:id])
-      @reply = Post.new(message:params[:message], read_flag:"false", src_id: current_user.id, dst_id: @replyto.src_id)
+      # 過去の履歴を取得
+      if @replyto.anc_id.nil?
+          @reply = Post.new(message:params[:message], read_flag:"false", src_id: current_user.id, dst_id: @replyto.src_id, anc_id: @replyto.id)
+      else
+          @reply = Post.new(message:params[:message], read_flag:"false", src_id: current_user.id, dst_id: @replyto.src_id, anc_id: @replyto.anc_id)
+      end
       if !@reply.save
           render :new, notice: "Error"
       end
@@ -59,6 +58,9 @@ class HomeController < ApplicationController
       @receive = Receive.new(u_id: current_user.id, mes_id: @message.id)
       if Receive.where(mes_id: @message.id).empty?
           @receive.save
+      end
+      if @message.anc_id.present?
+          @message_history = Post.where(anc_id: @message.anc_id).or(Post.where(id: @message.anc_id))
       end
   end
 

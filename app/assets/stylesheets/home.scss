@@ -512,10 +512,14 @@ input[type=number]::-webkit-outer-spin-button {
     box-sizing: border-box;
     color: #555;
     font-size: 20px;
-    border:2px solid #5E91CD;
+    border:2px solid #aaa;
     border-radius: 3px;
 	background: transparent;
     resize: none;
+}
+
+.message-view .message-wrap .text.my {
+    border: 2px solid #5E91CD;
 }
 
 .message-view .icon-wrap{
