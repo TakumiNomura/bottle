@@ -388,6 +388,11 @@ header{
     opacity: 0.8;
     text-shadow: 1px 1px 2px rgba(50, 50, 150, 0.7);
 }
+
+.all-message .message a#message_link{
+    display: none;
+}
+
 .all-message .message p.message{
     width: 100%;
     text-align: left;
