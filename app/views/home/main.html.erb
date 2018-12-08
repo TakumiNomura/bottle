@@ -3,9 +3,9 @@
     <% @message.each do |post| %>
         <div class="message">
             <p class="date"><%= post.created_at.strftime("%Y %m %d") %></p>
-            <%= link_to "×", "/home/receives/#{post.id}", method: :delete, data: {"turbolinks" => false} %>
+            <%= link_to "×", "/home/receives/#{post.id}", method: :delete, id: "delete", data: {"turbolinks" => false} %>
             <p class="message"><%= post.message %></p>
-            <%= link_to post.message, "/home/message/#{post.id}", :id => "message_link"%>
+            <%= link_to post.message, "/home/message/#{post.id}", :id => "message_link", data: {"turbolinks" => false}%>
 
         </div>
     <% end %>
@@ -68,19 +68,17 @@
 function hiraganacheck() {
     message = $("#message").val();
     var ng = ['ばか'];//禁止ワード
-   if(message.match(ng) !=null){
-         //$("#message").css("box-shadow", "0px 0px 10px red");
-         //$(".error").css('visibility', 'visible');
-         alert('ふてきせつな　もじが　ふくまれています');
-         return false;
-     }
-   if(message.match(/[^ぁ-ん０-９0-9ー〜！？!?、。「」^ \r　\n\ \s]+/ )){
+    if(message.match(ng) !=null){
+        //$("#message").css("box-shadow", "0px 0px 10px red");
+        //$(".error").css('visibility', 'visible');
+        alert('ふてきせつな　もじが　ふくまれています');
+        return false;
+    }
+    if(message.match(/[^ぁ-ん０-９0-9ー〜！？!?、。「」^ \r　\n\ \s]+/ )){
         $("#message").css("box-shadow", "0px 0px 10px red");
         $(".error").css('visibility', 'visible');
         return false;
-    }
-
-   else{
+    }else{
         $("#message").css("box-shadow","");
         $(".error").css('visibility', 'hidden');
         return true;

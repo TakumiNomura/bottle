@@ -19,22 +19,28 @@
             </div>
         <% end %>
     <% end %>
+    <% if @message_replyed.reply_flag == false %>
+        <!-- 返信していない時 -->
+        <div class="message-wrap">
+            <%= form_with model: @post, id: "message_form", onsubmit: "return hiraganacheck()" do |f| %>
 
-    <div class="message-wrap">
-        <%= form_with model: @post, id: "message_form", onsubmit: "return hiraganacheck()" do |f| %>
-
-            <%= f.text_area :message, :class => "textbox", :placeholder => "おへんじ かいてみる？", :onblur => "return hiraganacheck()" %>
-            <%= image_submit_tag("bottle_slh.png", id: "send") %>
-            <!-- 送信前に確認したい場合 -->
-            <!--<%= image_submit_tag("send.png", id: "send", data: { confirm: "めっせーじを おくりますか？"}) %>-->
-        <% end %>
-    </div>
-    <div class="icon-wrap">
-        <div class="write-icon">
-            <%= image_tag("pencil.png", :class => "write-icon") %>
+                <%= f.text_area :message, :class => "textbox", :placeholder => "おへんじ かいてみる？", :onblur => "return hiraganacheck()" %>
+                <%= image_submit_tag("bottle_slh.png", id: "send") %>
+                <!-- 送信前に確認したい場合 -->
+                <!--<%= image_submit_tag("send.png", id: "send", data: { confirm: "めっせーじを おくりますか？"}) %>-->
+            <% end %>
         </div>
-    </div>
-
+        <div class="icon-wrap">
+            <div class="write-icon">
+                <%= image_tag("pencil.png", :class => "write-icon") %>
+            </div>
+        </div>
+    <% else %>
+        <!-- 返信済みの時 -->
+        <div class="replyed">
+            <p>かこに　おへんじを　かきました</p>
+        </div>
+    <% end %>
     <div class="back">
         <%= link_to "もどる", '/home/main', data: {"turbolinks" => false} %>
     </div>

@@ -363,18 +363,25 @@ header{
 }
 
 .all-message div.message{
+    position: relative;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     border-bottom: 1px solid #aaa;
     padding: 15px;
+    transition: .4s;
+}
+div.message:hover {
+    transform: scale(1.05);
+    /* letter-spacing: 0.2em; */
+    /* font-size: 14px; */
 }
 .all-message .message p.date{
     width: 90%;
     margin: 0;
     font-size: 14px;
 }
-.all-message .message a{
+.all-message .message a#delete{
     display: block;
     width: 5%;
     margin-left: 5%;
@@ -383,14 +390,23 @@ header{
     font-family: 'Hiragino Sans';
     font-weight: 700;
     transition: .4s;
+    z-index: 2;
 }
-.all-message .message a:hover{
+.all-message .message a#delete:hover{
     opacity: 0.8;
-    text-shadow: 1px 1px 2px rgba(50, 50, 150, 0.7);
+    transform: scale(1.3);
 }
 
 .all-message .message a#message_link{
-    display: none;
+    position: absolute;
+    line-height: 1.4;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-indent: 200%;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .all-message .message p.message{
@@ -417,6 +433,11 @@ header{
         top: 30%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+    div.message:hover {
+        transform: scale(1);
+        /* letter-spacing: 0.2em; */
+        /* font-size: 14px; */
     }
     .send-info{
         width: 90vw;
@@ -526,6 +547,11 @@ input[type=number]::-webkit-outer-spin-button {
 
 .message-view .icon-wrap{
     margin-top: 25px;
+}
+
+div.replyed p{
+    text-align: center;
+    color: #888;
 }
 
 .back{
