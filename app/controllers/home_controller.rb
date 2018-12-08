@@ -46,6 +46,9 @@ class HomeController < ApplicationController
       else
           @reply = Post.new(message:params[:message], read_flag:"false", src_id: current_user.id, dst_id: @replyto.src_id, anc_id: @replyto.anc_id)
       end
+      # 返信したらフラグを立てる
+      @message_replyed = Receive.find_by(u_id: current_user.id, mes_id: @replyto.id)
+      @message_replyed.update(reply_flag: true)
       if !@reply.save
           render :new, notice: "Error"
       end
@@ -63,8 +66,10 @@ class HomeController < ApplicationController
           @receive.save
       end
       if @message.anc_id.present?
-          @message_history = Post.where(anc_id: @message.anc_id).or(Post.where(id: @message.anc_id))
+          @message_history = (Post.where(anc_id: @message.anc_id).or(Post.where(id: @message.anc_id))).order(created_at: "ASC")
       end
+      # 返信フラグがtrueのときは返信できない
+      @message_replyed = Receive.find_by(u_id: current_user.id, mes_id: @message.id)
   end
 
   def destroy
