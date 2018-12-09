@@ -382,6 +382,9 @@ div.message:hover {
     font-size: 14px;
 }
 .all-message .message a#delete{
+    display: none;
+}
+.all-message .message p#delete{
     display: block;
     width: 5%;
     margin-left: 5%;
@@ -391,8 +394,10 @@ div.message:hover {
     font-weight: 700;
     transition: .4s;
     z-index: 2;
+    cursor: pointer;
 }
-.all-message .message a#delete:hover{
+
+.all-message .message p#delete:hover{
     opacity: 0.8;
     transform: scale(1.3);
 }

@@ -62,6 +62,31 @@ $ ->
         window.location.href = '/home/message/' + messageid # 該当メッセージへ遷移
         return
 
+    # 削除ボタンをクリックした時
+    $('.all-message .message p#delete').click ->
+        messageno = $(this).parent().data('message-no')
+        messageitem = $(this).parent()
+        delete_message(messageno, messageitem)
+        return
+
+    # 手持ちメッセージの削除
+    delete_message = (messageno, messageitem) ->
+        del_flag = false
+        $.ajax(url: '/home/receives/' + messageno, type: 'DELETE').done((json) ->
+            $('.send-info').css('background', 'rgba(94,145,205,0.2)');
+            $('.send-info p').html("めっせーじを さくじょしました");
+            $('.send-info').fadeIn();
+            $('.send-info').delay(1500).fadeOut();
+            $(messageitem).remove()
+            return
+        ).fail (json) ->
+            $('.send-info').css('background', 'rgba(212,93,135,0.2)');
+            $('.send-info p').html("めっせーじの さくじょにしっぱいしました");
+            $('.send-info').fadeIn();
+            $('.send-info').delay(1500).fadeOut();
+            return
+        return
+
     # 返信メッセージを探しに行く
     reply_receive = ->
         if window.location.href.match(/\/home\/main/)   # メインページに居る時のみ
