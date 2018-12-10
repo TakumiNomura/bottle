@@ -174,7 +174,7 @@ header{
 .main-view .button a, .howto .button a{
     color: #FFF;
     text-decoration: none;
-    width: 360px;
+    width: auto;
     display: block;
     padding: 15px 20px;
 }
@@ -187,6 +187,7 @@ header{
     }
     .main-view{
         left: 50%;
+        width: 100vw;
         transform: translateX(-50%);
         height: 200px;
     }
@@ -196,7 +197,7 @@ header{
     .main-view .button#howto{
         display: block;
     }
-    .howto .button{
+    .main-view .button, .howto .button{
         width: 100%;
     }
     .howto .button a{
