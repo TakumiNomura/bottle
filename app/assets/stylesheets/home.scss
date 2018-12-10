@@ -382,6 +382,9 @@ div.message:hover {
     font-size: 14px;
 }
 .all-message .message a#delete{
+    display: none;
+}
+.all-message .message p#delete{
     display: block;
     width: 5%;
     margin-left: 5%;
@@ -391,8 +394,10 @@ div.message:hover {
     font-weight: 700;
     transition: .4s;
     z-index: 2;
+    cursor: pointer;
 }
-.all-message .message a#delete:hover{
+
+.all-message .message p#delete:hover{
     opacity: 0.8;
     transform: scale(1.3);
 }
@@ -628,9 +633,9 @@ div.replyed p{
 }
 
 .back-img img#cat{
-    height: 95px;
+    height: 120px;
     position: absolute;
-    top: 77%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -641,9 +646,9 @@ div.replyed p{
     	margin: 10px 0px 0px 0px;
     }
     .back-img img#cat{
-        height: 75px;
+        height: 100px;
         position: absolute;
-        top: 80%;
+        top: 75%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
@@ -656,7 +661,8 @@ div.replyed p{
     	margin: 30px 0px 0px 0px;
     }
     .back-img img#cat{
-        height: 65px;
+        height: 75px;
+        top: 70%;
     }
     .unread-icon img.unread-icon{
         margin-top: 50px;

@@ -75,7 +75,6 @@ class HomeController < ApplicationController
   def destroy
       @message = Receive.find_by(mes_id: params[:id])
       @message.destroy
-      redirect_to "/home/main"
   end
 
 end
