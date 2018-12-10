@@ -6,7 +6,7 @@
             <%= link_to "×", "/home/receives/#{post.id}", method: :delete, data: {"turbolinks" => false} %>
             <p class="message"><%= post.message %></p>
             <%= link_to post.message, "/home/message/#{post.id}", :id => "message_link"%>
-
+            <%= link_to "つうほう", "/home/report/#{post.id}", method: :post, data: { confirm: "つうほう しますか？"}, :id => "report", :remote => true %>
         </div>
     <% end %>
 </div>
@@ -86,5 +86,4 @@ function hiraganacheck() {
         return true;
     }
 }
-
 </script>
