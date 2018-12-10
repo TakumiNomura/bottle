@@ -76,6 +76,7 @@
 body{
     letter-spacing: 0.1em;
     margin: 0;
+    overflow-x: hidden;
 }
 
 /* ヘッダー */
@@ -339,12 +340,12 @@ header{
     padding: 30px;
     background: rgba(94,145,205,0.1);
     position: fixed;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: #555;
     overflow: scroll;
-    max-height: 50vh;
+    max-height: 40vh;
     z-index: 2;
     border-radius: 4px;
 }
