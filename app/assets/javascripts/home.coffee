@@ -17,6 +17,15 @@ $(window).on 'load', ->
         return
 
 $ ->
+    # 連続で投稿できないようにする
+    form = $('#message_form')
+    form.submit (event) ->
+        $(':input[type="image"]').prop('disabled', true);   # 投稿ボタンを無効化
+        # 投稿中メッセージ
+        # message = $('<div class="please-wait">Please Wait...</div>')
+        # form.append message
+        return
+
     messageid = ''  # 返信できたメッセージID格納用
 
     # 書き込みボタンをクリックした時、表示・非表示切り替え
@@ -53,6 +62,30 @@ $ ->
         window.location.href = '/home/message/' + messageid # 該当メッセージへ遷移
         return
 
+    # 削除ボタンをクリックした時
+    $('.all-message .message p#delete').click ->
+        messageno = $(this).parent().data('message-no')
+        messageitem = $(this).parent()
+        delete_message(messageno, messageitem)
+        return
+
+    # 手持ちメッセージの削除
+    delete_message = (messageno, messageitem) ->
+        $.ajax(url: '/home/receives/' + messageno, type: 'DELETE').done((json) ->
+            $('.send-info').css('background', 'rgba(94,145,205,0.2)');
+            $('.send-info p').html("めっせーじを さくじょしました");
+            $('.send-info').fadeIn();
+            $('.send-info').delay(1500).fadeOut();
+            $(messageitem).remove()
+            return
+        ).fail (json) ->
+            $('.send-info').css('background', 'rgba(212,93,135,0.2)');
+            $('.send-info p').html("めっせーじの さくじょにしっぱいしました");
+            $('.send-info').fadeIn();
+            $('.send-info').delay(1500).fadeOut();
+            return
+        return
+
     # 返信メッセージを探しに行く
     reply_receive = ->
         if window.location.href.match(/\/home\/main/)   # メインページに居る時のみ
@@ -82,9 +115,9 @@ $ ->
         return
 
     $ ->
-        # 定期的に返信が来ていないか10秒毎に確認
+        # 定期的に返信が来ていないか15秒毎に確認
         reply_receive()
-        setInterval reply_receive, 10000
+        setInterval reply_receive, 15000
         return
     return
 
@@ -97,6 +130,12 @@ $(document).on 'ajax:success', '#message_form', (e) ->
     $('.send-info p').html("めっせーじ を おくりました");
     $('.send-info').fadeIn();
     $('.send-info').delay(1500).fadeOut();
+    $(':input[type="image"]').prop('disabled', false);  # 投稿ボタンを有効化
+    if window.location.href.match(/\/home\/message\/[0-9]*/)    # メッセージ詳細画面にいる時はメインページへ
+        setTimeout (->
+            window.location.href = '/home/main/'
+            return
+            ), 1500
     return
 $(document).on 'ajax:error', '#message_form', (e) ->
     console.log e.detail[2]
@@ -104,6 +143,12 @@ $(document).on 'ajax:error', '#message_form', (e) ->
     $('.send-info p').html("めっせーじ を おくれませんでした");
     $('.send-info').fadeIn();
     $('.send-info').delay(1500).fadeOut();
+    $(':input[type="image"]').prop('disabled', false);  # 投稿ボタンを有効化
+    if window.location.href.match(/\/home\/message\/[0-9]*/)    # メッセージ詳細画面にいる時はメインページへ
+        setTimeout (->
+            window.location.href = '/home/main/'
+            return
+            ), 1500
     return
 
 $(document).on 'ajax:success', '#report', (e) ->

@@ -76,6 +76,7 @@
 body{
     letter-spacing: 0.1em;
     margin: 0;
+    overflow-x: hidden;
 }
 
 /* ヘッダー */
@@ -174,7 +175,7 @@ header{
 .main-view .button a, .howto .button a{
     color: #FFF;
     text-decoration: none;
-    width: 360px;
+    width: auto;
     display: block;
     padding: 15px 20px;
 }
@@ -187,6 +188,7 @@ header{
     }
     .main-view{
         left: 50%;
+        width: 100vw;
         transform: translateX(-50%);
         height: 200px;
     }
@@ -196,7 +198,7 @@ header{
     .main-view .button#howto{
         display: block;
     }
-    .howto .button{
+    .main-view .button, .howto .button{
         width: 100%;
     }
     .howto .button a{
@@ -338,12 +340,12 @@ header{
     padding: 30px;
     background: rgba(94,145,205,0.1);
     position: fixed;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: #555;
     overflow: scroll;
-    max-height: 50vh;
+    max-height: 40vh;
     z-index: 2;
     border-radius: 4px;
 }
@@ -363,18 +365,23 @@ header{
 }
 
 .all-message div.message{
+    position: relative;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     border-bottom: 1px solid #aaa;
     padding: 15px;
+    transition: .4s;
+}
+div.message:hover {
+    transform: scale(1.05);
 }
 .all-message .message p.date{
     width: 90%;
     margin: 0;
     font-size: 14px;
 }
-.all-message .message a{
+.all-message .message p#delete{
     display: block;
     width: 5%;
     margin-left: 5%;
@@ -383,14 +390,25 @@ header{
     font-family: 'Hiragino Sans';
     font-weight: 700;
     transition: .4s;
+    z-index: 2;
+    cursor: pointer;
 }
-.all-message .message a:hover{
+
+.all-message .message p#delete:hover{
     opacity: 0.8;
-    text-shadow: 1px 1px 2px rgba(50, 50, 150, 0.7);
+    transform: scale(1.3);
 }
 
 .all-message .message a#message_link{
-    display: none;
+    position: absolute;
+    line-height: 1.4;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-indent: 200%;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .all-message .message a#report{
@@ -421,6 +439,11 @@ header{
         top: 30%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+    div.message:hover {
+        transform: scale(1);
+        /* letter-spacing: 0.2em; */
+        /* font-size: 14px; */
     }
     .send-info{
         width: 90vw;
@@ -532,6 +555,11 @@ input[type=number]::-webkit-outer-spin-button {
     margin-top: 25px;
 }
 
+div.replyed p{
+    text-align: center;
+    color: #888;
+}
+
 .back{
     position: relative;
 }
@@ -606,9 +634,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .back-img img#cat{
-    height: 95px;
+    height: 120px;
     position: absolute;
-    top: 77%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -619,9 +647,9 @@ input[type=number]::-webkit-outer-spin-button {
     	margin: 10px 0px 0px 0px;
     }
     .back-img img#cat{
-        height: 75px;
+        height: 100px;
         position: absolute;
-        top: 80%;
+        top: 75%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
@@ -634,7 +662,8 @@ input[type=number]::-webkit-outer-spin-button {
     	margin: 30px 0px 0px 0px;
     }
     .back-img img#cat{
-        height: 65px;
+        height: 75px;
+        top: 70%;
     }
     .unread-icon img.unread-icon{
         margin-top: 50px;
