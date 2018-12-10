@@ -18,6 +18,10 @@
     </div>
 </div>
 <div class="back">
-    <%= link_to "もどる", "/home/main", data: {"turbolinks" => false} %>
+    <% if user_signed_in? %>
+      <%= link_to "もどる", "/home/main", data: {"turbolinks" => false} %>
+    <% else %>
+      <%= link_to "もどる", "/home/top", data: {"turbolinks" => false} %>
+    <% end %>
 </div>
 <div class="back-img" style="height: 100px; margin: 60px 0px;"></div>

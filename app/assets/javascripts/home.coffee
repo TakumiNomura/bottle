@@ -71,7 +71,6 @@ $ ->
 
     # 手持ちメッセージの削除
     delete_message = (messageno, messageitem) ->
-        del_flag = false
         $.ajax(url: '/home/receives/' + messageno, type: 'DELETE').done((json) ->
             $('.send-info').css('background', 'rgba(94,145,205,0.2)');
             $('.send-info p').html("めっせーじを さくじょしました");
