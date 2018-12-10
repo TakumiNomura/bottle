@@ -76,6 +76,7 @@
 body{
     letter-spacing: 0.1em;
     margin: 0;
+    overflow-x: hidden;
 }
 
 /* ヘッダー */
@@ -174,7 +175,7 @@ header{
 .main-view .button a, .howto .button a{
     color: #FFF;
     text-decoration: none;
-    width: 360px;
+    width: auto;
     display: block;
     padding: 15px 20px;
 }
@@ -187,6 +188,7 @@ header{
     }
     .main-view{
         left: 50%;
+        width: 100vw;
         transform: translateX(-50%);
         height: 200px;
     }
@@ -196,7 +198,7 @@ header{
     .main-view .button#howto{
         display: block;
     }
-    .howto .button{
+    .main-view .button, .howto .button{
         width: 100%;
     }
     .howto .button a{
@@ -338,12 +340,12 @@ header{
     padding: 30px;
     background: rgba(94,145,205,0.1);
     position: fixed;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: #555;
     overflow: scroll;
-    max-height: 50vh;
+    max-height: 40vh;
     z-index: 2;
     border-radius: 4px;
 }
