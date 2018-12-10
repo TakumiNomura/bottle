@@ -373,16 +373,11 @@ header{
 }
 div.message:hover {
     transform: scale(1.05);
-    /* letter-spacing: 0.2em; */
-    /* font-size: 14px; */
 }
 .all-message .message p.date{
     width: 90%;
     margin: 0;
     font-size: 14px;
-}
-.all-message .message a#delete{
-    display: none;
 }
 .all-message .message p#delete{
     display: block;
