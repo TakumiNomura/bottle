@@ -7,6 +7,10 @@ class HomeController < ApplicationController
   end
 
   def main
+      @check_report = User.find_by(id: current_user.id)
+      if @check_report.report_count >= 10
+          redirect_to "/home/banned"
+      end
       # メッセージ表示から戻ってきた時以外はローディングアニメーションを表示
       respond_to do |format|
           # ユーザごとに保存されているメッセージを取得
@@ -77,4 +81,14 @@ class HomeController < ApplicationController
       @message.destroy
   end
 
+  def report
+      @message = Post.find(params[:id])
+      @receive = Receive.find_by(mes_id: @message.id)
+      @user = User.find_by(id: @message.src_id)
+      @user.update(report_count: @user.report_count + 1)
+      @message.destroy
+      @receive.destroy
+      #redirect_to "/home/main", notice: "つうほうしました"
+
+  end
 end

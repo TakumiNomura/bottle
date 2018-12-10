@@ -151,6 +151,16 @@ $(document).on 'ajax:error', '#message_form', (e) ->
             ), 1500
     return
 
+$(document).on 'ajax:success', '#report', (e) ->
+    $('.send-info').css('background', 'rgba(94,145,205,0.2)');
+    $('.send-info p').html("つうほう しました");
+    $('.send-info').fadeIn();
+    $('.send-info').delay(1500).fadeOut();
+    setTimeout ->
+       window.location = "/home/main";
+    , 2100
+    return
+
 # ボタン全体にリンクを効かせる
 $(document).on 'click touchend', (e) ->
     $('.button-wrap .button').click ->

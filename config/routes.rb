@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   get 'home/message'
   get 'home/top'
   get 'home/main'
+  get 'home/banned'
   post "home/main" => "home#create"
   post "home/message/:id" => "home#reply"
+  post "home/report/:id" => "home#report"
   delete "home/receives/:id" => "home#destroy"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "home#top"

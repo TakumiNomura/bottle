@@ -411,6 +411,10 @@ div.message:hover {
     overflow: hidden;
 }
 
+.all-message .message a#report{
+    display: none;
+}
+
 .all-message .message p.message{
     width: 100%;
     text-align: left;
