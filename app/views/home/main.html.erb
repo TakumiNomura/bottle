@@ -3,10 +3,13 @@
     <% @message.each do |post| %>
         <div class="message" data-message-no="<%= post.id %>">
             <p class="date"><%= post.created_at.strftime("%Y %m %d") %></p>
-            <p id="delete">×</p>
             <p class="message"><%= post.message %></p>
             <%= link_to post.message, "/home/message/#{post.id}", :id => "message_link", data: {"turbolinks" => false}%>
-            <%= link_to "つうほう", "/home/report/#{post.id}", method: :post, data: { confirm: "つうほう しますか？"}, :id => "report", :remote => true %>
+            <div class="icon">
+                <%= link_to image_tag("reply.png", :class => "reply"), "/home/message/#{post.id}", data: {"turbolinks" => false}%>
+                <%= link_to image_tag("report.png", :class => "report"), "/home/report/#{post.id}", method: :post, data: { confirm: "つうほう しますか？"}, :id => "report", :remote => true %>
+                <p id="delete">×</p>
+            </div>
         </div>
     <% end %>
 </div>
@@ -60,7 +63,8 @@
 
 
 <div class="back-img">
-    <%= image_tag("nekoanime01.gif", :id => "cat") %>
+    <%= image_tag("nekoanime01.gif", :class => "cat", :id => "off") %>
+    <%= image_tag("neko.png", :class => "cat", :id => "on") %>
 </div>
 
 <script>

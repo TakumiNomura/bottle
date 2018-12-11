@@ -92,7 +92,9 @@ $ ->
             $.ajax(url: location.href + '.json').done((json) ->
                 if json.dst_id == json.user_id  # 自身のユーザIDと宛先ユーザIDが同じとき
                     messageid = json.id # そのメッセージのIDを取得
-                    $('.unread-reply-icon').fadeIn(); # 返信未読アイコンを表示
+                    $('.back-img img.cat#off').hide();
+                    $('.back-img img.cat#on').show();
+                    $('.unread-reply-icon').show(); # 返信未読アイコンを表示
                 return
             ).fail (json) ->
                 return
@@ -133,7 +135,7 @@ $(document).on 'ajax:success', '#message_form', (e) ->
     $(':input[type="image"]').prop('disabled', false);  # 投稿ボタンを有効化
     if window.location.href.match(/\/home\/message\/[0-9]*/)    # メッセージ詳細画面にいる時はメインページへ
         setTimeout (->
-            window.location.href = '/home/main/'
+            window.location.href = '/home/main'
             return
             ), 1500
     return
@@ -146,7 +148,7 @@ $(document).on 'ajax:error', '#message_form', (e) ->
     $(':input[type="image"]').prop('disabled', false);  # 投稿ボタンを有効化
     if window.location.href.match(/\/home\/message\/[0-9]*/)    # メッセージ詳細画面にいる時はメインページへ
         setTimeout (->
-            window.location.href = '/home/main/'
+            window.location.href = '/home/main'
             return
             ), 1500
     return

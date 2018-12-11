@@ -247,7 +247,7 @@ header{
 }
 
 .message-wrap .textbox, input#send{
-    visibility: hidden;
+    visibility: visible;
 }
 
 .message-wrap form img, input#send{
@@ -377,26 +377,9 @@ div.message:hover {
     transform: scale(1.05);
 }
 .all-message .message p.date{
-    width: 90%;
+    width: 100%;
     margin: 0;
     font-size: 14px;
-}
-.all-message .message p#delete{
-    display: block;
-    width: 5%;
-    margin-left: 5%;
-    text-decoration: none;
-    color: #D45D87;
-    font-family: 'Hiragino Sans';
-    font-weight: 700;
-    transition: .4s;
-    z-index: 2;
-    cursor: pointer;
-}
-
-.all-message .message p#delete:hover{
-    opacity: 0.8;
-    transform: scale(1.3);
 }
 
 .all-message .message a#message_link{
@@ -411,14 +394,49 @@ div.message:hover {
     overflow: hidden;
 }
 
+.all-message .message .icon{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 3px 0px 3px;
+}
+.all-message .message a{
+    transition: .2s;
+    z-index: 5;
+    cursor: pointer;
+    opacity: 0.8;
+}
+.all-message .message a img.reply{
+    height: 15px;
+}
 .all-message .message a#report{
-    display: none;
+    z-index: 5;
+    transition: .2s;
+}
+.all-message .message a#report img.report{
+    height: 15px;
+}
+.all-message .message p#delete{
+    display: block;
+    color: #D45D87;
+    font-family: 'Hiragino Sans';
+    font-weight: 700;
+    transition: .2s;
+    z-index: 5;
+    cursor: pointer;
+    margin: 0;
+}
+.all-message .message a:hover, .all-message .message a#report:hover, .all-message .message p#delete:hover{
+    opacity: 0.8;
+    transform: scale(1.3);
 }
 
 .all-message .message p.message{
     width: 100%;
     text-align: left;
-    margin: 5px 0px 0px 0px;
+    margin: 15px 0px 10px 0px;
 }
 
 @media screen and (max-width: 1300px) {
@@ -452,6 +470,9 @@ div.message:hover {
         top: 10%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+    .all-message .message .icon{
+        padding: 5px 2px 0px 2px;
     }
 }
 
@@ -633,12 +654,17 @@ div.replyed p{
     to { background-position: -3000px 0; } /* 3000pxとは使用した背景画像の長さ */
 }
 
-.back-img img#cat{
+.back-img img.cat{
     height: 120px;
     position: absolute;
     top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.back-img img.cat#on{
+    display: none;
+    height: 85px;
+    top: 78%;
 }
 
 @media screen and (max-width: 767px) {
@@ -646,12 +672,16 @@ div.replyed p{
     	height: 200px; /* 画像の高さを指定 */
     	margin: 10px 0px 0px 0px;
     }
-    .back-img img#cat{
+    .back-img img.cat{
         height: 100px;
         position: absolute;
         top: 75%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+    .back-img img.cat#on{
+        height: 55px;
+        top: 78%;
     }
 }
 
@@ -661,7 +691,7 @@ div.replyed p{
     	height: 120px;
     	margin: 30px 0px 0px 0px;
     }
-    .back-img img#cat{
+    .back-img img.cat{
         height: 75px;
         top: 70%;
     }
@@ -703,7 +733,7 @@ div.replyed p{
     font-weight: 700;
     margin-top: 50px;
 }
-.howto img#cat{
+.howto img.cat{
     position: relative;
     height: 70px;
     left: 50%;
