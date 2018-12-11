@@ -129,6 +129,33 @@ header{
     flex-wrap: wrap;
     flex-direction: column;
 }
+
+.top-visual .back-img img#cat{
+    height: 120px;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 767px) {
+    .top-visual .back-img img#cat{
+        height: 100px;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* コンパクトスマホ用 */
+@media screen and (max-width: 767px) and (max-height: 700px) {
+    .top-visual .back-img img#cat{
+        height: 75px;
+        top: 70%;
+    }
+}
+
 .main-view{
     display: flex;
     flex-wrap: wrap;
@@ -733,7 +760,7 @@ div.replyed p{
     font-weight: 700;
     margin-top: 50px;
 }
-.howto img.cat{
+.howto img#cat{
     position: relative;
     height: 70px;
     left: 50%;
