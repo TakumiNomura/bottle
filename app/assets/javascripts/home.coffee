@@ -64,8 +64,8 @@ $ ->
 
     # 削除ボタンをクリックした時
     $('.all-message .message p#delete').click ->
-        messageno = $(this).parent().data('message-no')
-        messageitem = $(this).parent()
+        messageno = $(this).parent().parent().data('message-no')
+        messageitem = $(this).parent().parent()
         delete_message(messageno, messageitem)
         return
 
