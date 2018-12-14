@@ -29,7 +29,7 @@ $ ->
     messageid = ''  # 返信できたメッセージID格納用
 
     # 書き込みボタンをクリックした時、表示・非表示切り替え
-    $('.write-icon img.write-icon').click ->
+    $('.icon-wrap #write').click ->
         if $('.message-wrap .textbox').css('visibility') == 'hidden'
             if $('.all-message').css('display') == 'block'
                 $('.all-message').fadeOut();
@@ -41,7 +41,7 @@ $ ->
         return
 
     # かばんボタンをクリックした時、表示・非表示切り替え
-    $('.bag-icon img.bag-icon').click ->
+    $('.icon-wrap #bag').click ->
         if $('.all-message').css('display') == 'none'
             if $('.message-wrap .textbox').css('visibility') == 'visible'
                 $('.message-wrap .textbox, input#send').css('visibility', 'hidden')

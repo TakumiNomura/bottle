@@ -31,8 +31,11 @@
             <% end %>
         </div>
         <div class="icon-wrap">
-            <div class="write-icon">
-                <%= image_tag("pencil.png", :class => "write-icon") %>
+            <div id="write" class="icon">
+                <%= image_tag("pencil.png") %>
+                <div class="mask">
+                    <div class="caption">かく</div>
+                </div>
             </div>
         </div>
     <% else %>
