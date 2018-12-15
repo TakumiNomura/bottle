@@ -17,6 +17,8 @@ $(window).on 'load', ->
         return
 
 $ ->
+    # テキストエリアを選択状態にする
+    $('.message-wrap .textbox').focus();
     # 連続で投稿できないようにする
     form = $('#message_form')
     form.submit (event) ->
@@ -30,21 +32,28 @@ $ ->
 
     # 書き込みボタンをクリックした時、表示・非表示切り替え
     $('.icon-wrap #write').click ->
-        if $('.message-wrap .textbox').css('visibility') == 'hidden'
+        if $('.message-wrap .textbox').hasClass('display')
+            $('.message-wrap .textbox').removeClass('display')
+            $('.message-wrap .textbox').addClass('hidden')
+            $('.icon-wrap #write .caption').html("かく");
+        else
             if $('.all-message').css('display') == 'block'
                 $('.all-message').fadeOut();
-            $('.message-wrap .textbox, input#send').css('visibility', 'visible')
-        else
-            $('.message-wrap .textbox, input#send').css('visibility', 'hidden')
             $("#message").css("box-shadow","");
             $(".error").css('visibility', 'hidden');
+            $('.message-wrap .textbox').removeClass('hidden')
+            $('.message-wrap .textbox').addClass('display')
+            # テキストエリアを選択状態にする
+            $('.message-wrap .textbox').focus();
+            $('.icon-wrap #write .caption').html("とじる");
         return
 
     # かばんボタンをクリックした時、表示・非表示切り替え
     $('.icon-wrap #bag').click ->
         if $('.all-message').css('display') == 'none'
-            if $('.message-wrap .textbox').css('visibility') == 'visible'
-                $('.message-wrap .textbox, input#send').css('visibility', 'hidden')
+            if $('.message-wrap .textbox').hasClass('display')
+                $('.message-wrap .textbox').removeClass('display')
+                $('.message-wrap .textbox').addClass('hidden')
                 $("#message").css("box-shadow","");
                 $(".error").css('visibility', 'hidden');
             $('.all-message').fadeIn();

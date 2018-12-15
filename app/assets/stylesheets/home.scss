@@ -268,6 +268,104 @@ header{
 	font-size: 20px;
     resize: none;
 }
+.message-wrap .textbox.display{
+    -webkit-animation: TextBoxOpen cubic-bezier(0.23, 1, 0.32, 1) .6s forwards;
+    animation: TextBoxOpen cubic-bezier(0.23, 1, 0.32, 1) .6s forwards;
+}
+.message-wrap .textbox.display + input#send{
+    -webkit-animation: BottleOpen cubic-bezier(0.23, 1, 0.32, 1) 1.2s forwards;
+    animation: BottleOpen cubic-bezier(0.23, 1, 0.32, 1) 1.2s forwards;
+}
+.message-wrap .textbox.hidden{
+    -webkit-animation: TextBoxClose cubic-bezier(0.23, 1, 0.32, 1) .6s forwards;
+    animation: TextBoxClose cubic-bezier(0.23, 1, 0.32, 1) .6s forwards;
+}
+.message-wrap .textbox.hidden + input#send{
+    -webkit-animation: BottleClose cubic-bezier(0.23, 1, 0.32, 1) .6s forwards;
+    animation: BottleClose cubic-bezier(0.23, 1, 0.32, 1) .6s forwards;
+}
+
+@keyframes TextBoxOpen{
+    0%{
+        transform: translate3d(0,0,0);
+        opacity: 0;
+        width: 0%;
+        padding: 0;
+    }
+    100%{
+        opacity: 1;
+        width: 100%;
+        padding: 15px 80px 15px 20px;
+    }
+}
+@-webkit-keyframes TextBoxOpen{
+    0%{
+        transform: translate3d(0,0,0);
+        opacity: 0;
+        width: 0%;
+        padding: 0;
+    }
+    100%{
+        opacity: 1;
+        width: 100%;
+        padding: 15px 80px 15px 20px;
+    }
+}
+
+@keyframes BottleOpen{
+    0%{ transform: translate3d(0,0,0); opacity: 0; transform: translateX(-200px) translateY(-50%) rotate(30deg); }
+    73%{ transform: translateX(0px) translateY(-50%) rotate(20deg); }
+    80%{ transform: translateX(0px) translateY(-50%) rotate(40deg); }
+    93%{ transform: translateX(0px) translateY(-50%) rotate(25deg); }
+    100%{ opacity: 1; transform: translateX(0px) translateY(-50%) rotate(30deg); }
+}
+@-webkit-keyframes BottleOpen{
+    0%{ transform: translate3d(0,0,0); opacity: 0; transform: translateX(-200px) translateY(-50%) rotate(30deg); }
+    73%{ transform: translateX(0px) translateY(-50%) rotate(20deg); }
+    80%{ transform: translateX(0px) translateY(-50%) rotate(40deg); }
+    93%{ transform: translateX(0px) translateY(-50%) rotate(25deg); }
+    100%{ opacity: 1; transform: translateX(0px) translateY(-50%) rotate(30deg); }
+}
+
+@keyframes TextBoxClose{
+    0%{
+        transform: translate3d(0,0,0);
+        opacity: 1;
+        width: 100%;
+        padding: 15px 80px 15px 20px;
+    }
+    100%{
+        transform: translate3d(0,0,0);
+        opacity: 0;
+        width: 0%;
+        padding: 0;
+    }
+}
+
+@keyframes BottleClose{
+    0%{ transform: translate3d(0,0,0); opacity: 1; }
+    50%{ opacity: 0; }
+    100%{ transform: translateX(-200px) translateY(-50%) rotate(30deg); opacity: 0; }
+}
+@-webkit-keyframes BottleClose{
+    0%{ transform: translate3d(0,0,0); opacity: 1; }
+    50%{ opacity: 0; }
+    100%{ transform: translateX(-200px) translateY(-50%) rotate(30deg); opacity: 0; }
+}
+
+@-webkit-keyframes TextBoxClose{
+    0%{
+        transform: translate3d(0,0,0);
+        opacity: 1;
+        width: 100%;
+        padding: 15px 80px 15px 20px;
+    }
+    100%{
+        opacity: 0;
+        width: 0%;
+        padding: 0;
+    }
+}
 
 .message-wrap .textbox:focus{
     box-shadow: 0px 0px 10px #5E91CD;
@@ -292,6 +390,20 @@ header{
     }
     .message-wrap form img, input#send{
         left: 80%;
+    }
+    @keyframes BottleOpen{
+        0%{ transform: translate3d(0,0,0); opacity: 0; transform: translateX(-200px) translateY(-50%) rotate(30deg); }
+        73%{ transform: translateX(0px) translateY(-50%) rotate(20deg); }
+        80%{ transform: translateX(0px) translateY(-50%) rotate(40deg); }
+        93%{ transform: translateX(0px) translateY(-50%) rotate(25deg); }
+        100%{ opacity: 1; transform: translateX(0px) translateY(-50%) rotate(30deg); }
+    }
+    @-webkit-keyframes BottleOpen{
+        0%{ transform: translate3d(0,0,0); opacity: 0; transform: translateX(-200px) translateY(-50%) rotate(30deg); }
+        73%{ transform: translateX(0px) translateY(-50%) rotate(20deg); }
+        80%{ transform: translateX(0px) translateY(-50%) rotate(40deg); }
+        93%{ transform: translateX(0px) translateY(-50%) rotate(25deg); }
+        100%{ opacity: 1; transform: translateX(0px) translateY(-50%) rotate(30deg); }
     }
 }
 // 送信ボタン
@@ -651,12 +763,14 @@ div.replyed p{
 }
 .icon-wrap .icon img {
     height: 60px;
+    transition: .3s;
 }
 .icon-wrap .icon:hover .mask {
     opacity: 1;
 }
 .icon-wrap .icon:hover img {
     filter: blur(1.5px);
+    transform: scale(1.1);
 }
 
 .icon-wrap .caption{
@@ -676,8 +790,8 @@ div.replyed p{
 
 @keyframes IconTextAnimation{
     0%{
-        letter-spacing: 1em;
-        text-indent: 1em;
+        letter-spacing: 2em;
+        text-indent: 2em;
         opacity: 0;
     }
     100%{
@@ -704,11 +818,18 @@ div.replyed p{
         height: 50px;
         right: 50px;
     }
+    .icon-wrap .icon img {
+        height: 50px;
+    }
     .icon-wrap{
         padding: 0 30px;
     }
     .icon-wrap .icon:hover .mask {
         opacity: 0;
+    }
+    .icon-wrap .icon:hover img {
+        filter: blur(0);
+        transform: scale(1);
     }
 }
 
