@@ -28,24 +28,40 @@ $ ->
         # form.append message
         return
 
+    $ ->
+        #ボトルにマウスを乗せたら
+        $('input#send').hover (->
+            $('.message-wrap .textbox').addClass('hover')
+            $('input#send').addClass('hover')
+            $('input#send').addClass('swing')
+            return
+        ), ->
+            $('input#send').removeClass('swing')
+            return
+        return
+
     messageid = ''  # 返信できたメッセージID格納用
 
     # 書き込みボタンをクリックした時、表示・非表示切り替え
     $('.icon-wrap #write').click ->
         if $('.message-wrap .textbox').hasClass('display')
+            # 非表示に切り替え
             $('.message-wrap .textbox').removeClass('display')
-            $('.message-wrap .textbox').addClass('hidden')
-            $('.icon-wrap #write .caption').html("かく");
+            $('.message-wrap .textbox').addClass('hidden')  # テキストエリアを非表示
+            $('.icon-wrap #write .caption').html("かく")  # アイコンの文字をかくに
+            $('.message-wrap .textbox').removeClass('hover')
+            $('input#send').removeClass('hover')
         else
+            # 表示に切り替え
             if $('.all-message').css('display') == 'block'
-                $('.all-message').fadeOut();
-            $("#message").css("box-shadow","");
-            $(".error").css('visibility', 'hidden');
+                # 手持ちメッセージを表示してる時は消す
+                $('.all-message').fadeOut()
+            $("#message").css("box-shadow","")  # エラー枠が出ていたときは消す
+            $(".error").css('visibility', 'hidden') # エラー文が出ていた時は消す
             $('.message-wrap .textbox').removeClass('hidden')
-            $('.message-wrap .textbox').addClass('display')
-            # テキストエリアを選択状態にする
-            $('.message-wrap .textbox').focus();
-            $('.icon-wrap #write .caption').html("とじる");
+            $('.message-wrap .textbox').addClass('display') # テキストエリアを表示
+            $('.message-wrap .textbox').focus() # テキストエリアを選択状態にする
+            $('.icon-wrap #write .caption').html("とじる") # アイコンの文字をとじるに
         return
 
     # かばんボタンをクリックした時、表示・非表示切り替え
