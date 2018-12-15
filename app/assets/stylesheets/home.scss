@@ -656,7 +656,7 @@ div.replyed p{
     opacity: 1;
 }
 .icon-wrap .icon:hover img {
-    filter: blur(2px);
+    filter: blur(1.5px);
 }
 
 .icon-wrap .caption{
@@ -676,8 +676,8 @@ div.replyed p{
 
 @keyframes IconTextAnimation{
     0%{
-        letter-spacing: 2.6em;
-        text-indent: 2.6em;
+        letter-spacing: 1em;
+        text-indent: 1em;
         opacity: 0;
     }
     100%{
@@ -694,7 +694,7 @@ div.replyed p{
     top: 0;
     left: 0;
     opacity: 0;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(40, 40, 40, 0.4);
     -webkit-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
 }
@@ -718,18 +718,18 @@ div.replyed p{
 	position: relative;
 	background: image-url("matinami.png") repeat-x 0 0;
 	background-size: auto 100%;
-	animation: bg-slider 500s linear infinite; /* 500sの部分背景画像の約数だとスムーズ */
-    -webkit-animation: bg-slider 500s linear infinite;
+	animation: bg-slider 300s linear infinite; /* 500sの部分背景画像の約数だとスムーズ */
+    -webkit-animation: bg-slider 300s linear infinite;
 	margin-top: 30px;
 	padding: 0;
 }
 @keyframes bg-slider {
 	from { background-position: 0 0; }
-    to { background-position: -3000px 0; } /* 3000pxとは使用した背景画像の長さ */
+    to { background-position: -1800px 0; } /* 3000pxとは使用した背景画像の長さ */
 }
 @-webkit-keyframes bg-slider {
 	from { background-position: 0 0; }
-    to { background-position: -3000px 0; } /* 3000pxとは使用した背景画像の長さ */
+    to { background-position: -1800px 0; } /* 3000pxとは使用した背景画像の長さ */
 }
 
 .back-img img.cat{
