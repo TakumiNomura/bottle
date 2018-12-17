@@ -269,12 +269,142 @@ header{
     resize: none;
 }
 
-.message-wrap .textbox:focus{
-    box-shadow: 0px 0px 10px #5E91CD;
+// テキストエリア開くアニメーション
+.message-wrap .textbox.display{
+    -webkit-animation: TextBoxOpen cubic-bezier(0.23, 1, 0.32, 1) .6s forwards;
+    animation: TextBoxOpen cubic-bezier(0.23, 1, 0.32, 1) .6s forwards;
+}
+@keyframes TextBoxOpen{
+    0%{
+        transform: translate3d(0,0,0);
+        opacity: 0;
+        width: 0%;
+        padding: 0;
+    }
+    100%{
+        opacity: 1;
+        width: 100%;
+        padding: 15px 80px 15px 20px;
+    }
+}
+@-webkit-keyframes TextBoxOpen{
+    0%{
+        transform: translate3d(0,0,0);
+        opacity: 0;
+        width: 0%;
+        padding: 0;
+    }
+    100%{
+        opacity: 1;
+        width: 100%;
+        padding: 15px 80px 15px 20px;
+    }
 }
 
-.message-wrap .textbox, input#send{
-    visibility: visible;
+// テキストエリアとともにボトル開くアニメーション
+.message-wrap .textbox.display + input#send{
+    -webkit-animation: BottleOpen cubic-bezier(0.23, 1, 0.32, 1) 1.2s forwards;
+    animation: BottleOpen cubic-bezier(0.23, 1, 0.32, 1) 1.2s forwards;
+}
+@keyframes BottleOpen{
+    0%{ transform: translate3d(0,0,0); opacity: 0; transform: translateX(-200px) translateY(-50%) rotate(30deg); }
+    73%{ transform: translateX(0px) translateY(-50%) rotate(20deg); }
+    80%{ transform: translateX(0px) translateY(-50%) rotate(40deg); }
+    93%{ transform: translateX(0px) translateY(-50%) rotate(25deg); }
+    100%{ opacity: 1; transform: translateX(0px) translateY(-50%) rotate(30deg); }
+}
+@-webkit-keyframes BottleOpen{
+    0%{ transform: translate3d(0,0,0); opacity: 0; transform: translateX(-200px) translateY(-50%) rotate(30deg); }
+    73%{ transform: translateX(0px) translateY(-50%) rotate(20deg); }
+    80%{ transform: translateX(0px) translateY(-50%) rotate(40deg); }
+    93%{ transform: translateX(0px) translateY(-50%) rotate(25deg); }
+    100%{ opacity: 1; transform: translateX(0px) translateY(-50%) rotate(30deg); }
+}
+
+// テキストエリアが表示されている時はボトルにホバーした時のアニメーションのみ許可
+.message-wrap .textbox.display.hover{
+    -webkit-animation: unset;
+    animation: unset;
+}
+.message-wrap .textbox.display + input#send.hover{
+    -webkit-animation: unset;
+    animation: unset;
+}
+
+// ボトルにホバーした時のアニメーション
+input#send.swing{
+    -webkit-animation: Swing cubic-bezier(0.23, 1, 0.32, 1) .4s !important;
+    animation: Swing cubic-bezier(0.23, 1, 0.32, 1) .4s !important;
+}
+@keyframes Swing{
+    0%  {transform: translateY(-50%) rotate(30deg);}
+    20% {transform: translateY(-50%) rotate(40deg);}
+    40% {transform: translateY(-50%) rotate(20deg);}
+    60% {transform: translateY(-50%) rotate(35deg);}
+    80% {transform: translateY(-50%) rotate(25deg);}
+    100%{transform: translateY(-50%) rotate(30deg);}
+}
+@-webkit-keyframes Swing{
+    0%  {transform: translateY(-50%) rotate(30deg);}
+    20% {transform: translateY(-50%) rotate(40deg);}
+    40% {transform: translateY(-50%) rotate(20deg);}
+    60% {transform: translateY(-50%) rotate(35deg);}
+    80% {transform: translateY(-50%) rotate(25deg);}
+    100%{transform: translateY(-50%) rotate(30deg);}
+}
+
+// テキストエリアを閉じるときのアニメーション
+.message-wrap .textbox.hidden{
+    -webkit-animation: TextBoxClose cubic-bezier(0.23, 1, 0.32, 1) .6s forwards;
+    animation: TextBoxClose cubic-bezier(0.23, 1, 0.32, 1) .6s forwards;
+}
+@keyframes TextBoxClose{
+    0%{
+        transform: translate3d(0,0,0);
+        opacity: 1;
+        width: 100%;
+        padding: 15px 80px 15px 20px;
+    }
+    100%{
+        transform: translate3d(0,0,0);
+        opacity: 0;
+        width: 0%;
+        padding: 0;
+    }
+}
+@-webkit-keyframes TextBoxClose{
+    0%{
+        transform: translate3d(0,0,0);
+        opacity: 1;
+        width: 100%;
+        padding: 15px 80px 15px 20px;
+    }
+    100%{
+        opacity: 0;
+        width: 0%;
+        padding: 0;
+    }
+}
+
+// テキストエリアとともにボトル閉じるアニメーション
+.message-wrap .textbox.hidden + input#send{
+    -webkit-animation: BottleClose cubic-bezier(0.23, 1, 0.32, 1) .6s forwards;
+    animation: BottleClose cubic-bezier(0.23, 1, 0.32, 1) .6s forwards;
+}
+@keyframes BottleClose{
+    0%{ transform: translate3d(0,0,0); opacity: 1; }
+    50%{ opacity: 0; }
+    100%{ transform: translateX(-200px) translateY(-50%) rotate(30deg); opacity: 0; }
+}
+@-webkit-keyframes BottleClose{
+    0%{ transform: translate3d(0,0,0); opacity: 1; }
+    50%{ opacity: 0; }
+    100%{ transform: translateX(-200px) translateY(-50%) rotate(30deg); opacity: 0; }
+}
+
+// テキストボックスを選択中
+.message-wrap .textbox:focus{
+    box-shadow: 0px 0px 10px #5E91CD;
 }
 
 .message-wrap form img, input#send{
@@ -293,27 +423,20 @@ header{
     .message-wrap form img, input#send{
         left: 80%;
     }
-}
-// 送信ボタン
-.message-wrap form img:hover, input#send:hover{
-    animation: swing 0.5s linear;
-    -webkit-animation: swing 0.5s linear;
-}
-@keyframes swing{
-    0%  {transform: translateY(-50%) rotate(30deg);}
-    20% {transform: translateY(-50%) rotate(40deg);}
-    40% {transform: translateY(-50%) rotate(20deg);}
-    60% {transform: translateY(-50%) rotate(35deg);}
-    80% {transform: translateY(-50%) rotate(25deg);}
-    100%{transform: translateY(-50%) rotate(30deg);}
-}
-@-webkit-keyframes swing{
-    0%  {transform: translateY(-50%) rotate(30deg);}
-    20% {transform: translateY(-50%) rotate(40deg);}
-    40% {transform: translateY(-50%) rotate(20deg);}
-    60% {transform: translateY(-50%) rotate(35deg);}
-    80% {transform: translateY(-50%) rotate(25deg);}
-    100%{transform: translateY(-50%) rotate(30deg);}
+    @keyframes BottleOpen{
+        0%{ transform: translate3d(0,0,0); opacity: 0; transform: translateX(-200px) translateY(-50%) rotate(30deg); }
+        73%{ transform: translateX(0px) translateY(-50%) rotate(20deg); }
+        80%{ transform: translateX(0px) translateY(-50%) rotate(40deg); }
+        93%{ transform: translateX(0px) translateY(-50%) rotate(25deg); }
+        100%{ opacity: 1; transform: translateX(0px) translateY(-50%) rotate(30deg); }
+    }
+    @-webkit-keyframes BottleOpen{
+        0%{ transform: translate3d(0,0,0); opacity: 0; transform: translateX(-200px) translateY(-50%) rotate(30deg); }
+        73%{ transform: translateX(0px) translateY(-50%) rotate(20deg); }
+        80%{ transform: translateX(0px) translateY(-50%) rotate(40deg); }
+        93%{ transform: translateX(0px) translateY(-50%) rotate(25deg); }
+        100%{ opacity: 1; transform: translateX(0px) translateY(-50%) rotate(30deg); }
+    }
 }
 
 .error{
@@ -371,7 +494,8 @@ header{
     left: 50%;
     transform: translate(-50%, -50%);
     color: #555;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     max-height: 40vh;
     z-index: 2;
     border-radius: 4px;
@@ -508,7 +632,18 @@ div.message:hover {
     position: relative;
     z-index: 2;
 }
-
+// 誰か宛の未読アイコン
+.unread-icon img.unread-reply-icon{
+    filter: invert(1);
+    margin-top: 40px;
+    z-index: 5;
+    display:none;
+}
+// 自分宛ての未読アイコン
+.unread-icon img.unread-icon{
+    margin-top: 100px;
+}
+// 誰か宛の未読アイコン・自分宛ての未読アイコン
 .unread-icon img.unread-icon, .unread-icon img.unread-reply-icon{
     position: absolute;
     left: 50%;
@@ -516,43 +651,47 @@ div.message:hover {
     margin-left: 30px;
     height: auto;
     width: 80px;
-    transition: .4s;
     cursor: pointer;
-    animation: wave 2s ease-in-out;
+    animation: wave 2s linear infinite alternate;
     -webkit-animation: wave 2s linear infinite alternate;
 }
-
-.unread-icon img.unread-reply-icon{
-    filter: invert(1);
-    margin-top: 40px;
-    z-index: 5;
-    display:none;
-}
-
-.unread-icon img.unread-icon{
-    margin-top: 100px;
-}
-
 @keyframes wave{
-    0%  {transform: translateX(0px) translateY(0px) rotate(0deg);}
-    20% {transform: translateX(0.1px) translateY(-2px) rotate(0.5deg);}
-    40% {transform: translateX(0.2px) translateY(-8px) rotate(1deg);}
-    60% {transform: translateX(0.4px) translateY(-12px) rotate(1.5deg);}
-    80% {transform: translateX(0.8px) translateY(-16px) rotate(2deg);}
-    100%{transform: translateX(1px) translateY(-20px) rotate(2.5deg);}
+    0%  {transform: translateY(0px);}
+    20% {transform: translateY(-2px);}
+    40% {transform: translateY(-5px);}
+    60% {transform: translateY(-8px);}
+    80% {transform: translateY(-12px);}
+    100%{transform: translateY(-14px);}
 }
-
 @-webkit-keyframes wave{
-    0%  {transform: translateX(0px) translateY(0px) rotate(0deg);}
-    20% {transform: translateX(0.1px) translateY(-2px) rotate(0.5deg);}
-    40% {transform: translateX(0.2px) translateY(-8px) rotate(1deg);}
-    60% {transform: translateX(0.4px) translateY(-12px) rotate(1.5deg);}
-    80% {transform: translateX(0.8px) translateY(-16px) rotate(2deg);}
-    100%{transform: translateX(1px) translateY(-20px) rotate(2.5deg);}
+    0%  {transform: translateY(0px);}
+    20% {transform: translateY(-2px);}
+    40% {transform: translateY(-5px);}
+    60% {transform: translateY(-8px);}
+    80% {transform: translateY(-12px);}
+    100%{transform: translateY(-14px);}
 }
 
+// 未読アイコンにカーソル合わせた時
 .unread-icon img.unread-icon:hover, .unread-icon img.unread-reply-icon:hover{
-    opacity: 0.7;
+    animation: poyoyon .4s ease-in-out both;
+    -webkit-animation: poyoyon .4s ease-in-out both;
+}
+@keyframes poyoyon{
+    0%  {transform: scale(1);}
+    20% {transform: scale(1.08);}
+    40% {transform: scale(0.95);}
+    60% {transform: scale(1.15);}
+    80% {transform: scale(0.9);}
+    100%{transform: scale(1);}
+}
+@-webkit-keyframes poyoyon{
+    0%  {transform: scale(1);}
+    20% {transform: scale(1.1);}
+    40% {transform: scale(0.9);}
+    60% {transform: scale(1.2);}
+    80% {transform: scale(0.9);}
+    100%{transform: scale(1);}
 }
 
 /* テキストボックス内の初期テキスト色 */
@@ -634,30 +773,89 @@ div.replyed p{
     padding: 0 60px;
 }
 
-.icon-wrap img.write-icon, .icon-wrap img.bag-icon, .icon-wrap img.enquete-icon {
+.icon-wrap .icon {
+    position: relative;
     height: 60px;
-    margin-left: 10px;
+    overflow: hidden;
     border: 1px solid #888;
     border-radius: 30px;
-    transition: .4s;
+    margin-left: 10px;
     background-color: white;
     z-index: 5;
     cursor: pointer;
 }
-.icon-wrap .write-icon img:hover, .icon-wrap .bag-icon img:hover, .icon-wrap .enquete-icon img:hover {
-    filter: invert(80%);
+.icon-wrap #enquete{
+    display: none;
+}
+.icon-wrap .icon img {
+    height: 60px;
+    transition: .3s;
+}
+.icon-wrap .icon:hover .mask {
+    opacity: 1;
+}
+.icon-wrap .icon:hover img {
+    filter: blur(1.5px);
+    transform: scale(1.1);
+}
+
+.icon-wrap .caption{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    color: #FFF;
+    margin: 0 -50%;
+    word-break: keep-all;
+}
+.icon-wrap .caption:hover{
+    animation: IconTextAnimation cubic-bezier(0.86, 0, 0.07, 1) .4s;
+    -webkit-animation: IconTextAnimation cubic-bezier(0.86, 0, 0.07, 1) .4s;
+}
+
+@keyframes IconTextAnimation{
+    0%{
+        letter-spacing: 2em;
+        text-indent: 2em;
+        opacity: 0;
+    }
+    100%{
+        letter-spacing: 0.1em;
+        text-indent: 0.1em;
+        opacity: 1;
+    }
+}
+
+.icon-wrap .mask{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background-color: rgba(40, 40, 40, 0.4);
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
 }
 
 @media screen and (max-width: 767px) {
-    .icon-wrap img.write-icon, .icon-wrap img.bag-icon, .icon-wrap img.enquete-icon {
+    .icon-wrap .icon {
         height: 50px;
         right: 50px;
     }
-    .icon-wrap{
-        padding: 0 30px;
+    .icon-wrap .icon img {
+        height: 50px;
     }
-    .icon-wrap .write-icon img:hover, .icon-wrap .bag-icon img:hover, .icon-wrap .enquete-icon img:hover {
-        filter: invert(0%);
+    .icon-wrap{
+        padding: 0px;
+    }
+    .icon-wrap .icon:hover .mask {
+        opacity: 0;
+    }
+    .icon-wrap .icon:hover img {
+        filter: blur(0);
+        transform: scale(1);
     }
 }
 
@@ -667,18 +865,18 @@ div.replyed p{
 	position: relative;
 	background: image-url("matinami.png") repeat-x 0 0;
 	background-size: auto 100%;
-	animation: bg-slider 500s linear infinite; /* 500sの部分背景画像の約数だとスムーズ */
-    -webkit-animation: bg-slider 500s linear infinite;
+	animation: bg-slider 300s linear infinite; /* 500sの部分背景画像の約数だとスムーズ */
+    -webkit-animation: bg-slider 300s linear infinite;
 	margin-top: 30px;
 	padding: 0;
 }
 @keyframes bg-slider {
 	from { background-position: 0 0; }
-    to { background-position: -3000px 0; } /* 3000pxとは使用した背景画像の長さ */
+    to { background-position: -1800px 0; } /* 3000pxとは使用した背景画像の長さ */
 }
 @-webkit-keyframes bg-slider {
 	from { background-position: 0 0; }
-    to { background-position: -3000px 0; } /* 3000pxとは使用した背景画像の長さ */
+    to { background-position: -1800px 0; } /* 3000pxとは使用した背景画像の長さ */
 }
 
 .back-img img.cat{

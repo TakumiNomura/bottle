@@ -19,7 +19,7 @@
 
     <div class="message-wrap">
         <%= form_with model: @post, id: "message_form", onsubmit: "return hiraganacheck()" do |f| %>
-            <%= f.text_area :message, :class => "textbox", :placeholder => "かいてみる？", :onblur => "return hiraganacheck()" %>
+            <%= f.text_area :message, :class => "textbox display", :placeholder => "かいてみる？", :onblur => "return hiraganacheck()" %>
             <%= image_submit_tag("bottle_slh.png", id: "send") %>
 
             <!-- 送信前に確認したい場合 -->
@@ -33,16 +33,25 @@
 
     <!-- 全メッセージ表示・書き込みボタン -->
     <div class="icon-wrap">
-        <div class="enquete-icon" style="margin-right: 30px;">
-            <%= link_to image_tag("enquete.png", :class => "enquete-icon"), "https://docs.google.com/forms/d/1i33WE3LsdfbYl2DaBNZAdWAUL-rUFkQy2uNz6FdxfbM/edit?usp=sharing", target: "_blank" %>
+        <div id="enquete" class="icon" style="margin-right: 30px;">
+            <%= link_to image_tag("enquete.png"), "https://docs.google.com/forms/d/1i33WE3LsdfbYl2DaBNZAdWAUL-rUFkQy2uNz6FdxfbM/edit?usp=sharing", target: "_blank" %>
+            <div class="mask">
+                <div class="caption">かんそう</div>
+            </div>
         </div>
 
-        <div class="bag-icon">
-            <%= image_tag("bag.png", :class => "bag-icon") %>
+        <div id="bag" class="icon">
+            <%= image_tag("bag.png") %>
+            <div class="mask">
+                <div class="caption">みる</div>
+            </div>
         </div>
 
-        <div class="write-icon">
-            <%= image_tag("pencil.png", :class => "write-icon") %>
+        <div id="write" class="icon">
+            <%= image_tag("pencil.png") %>
+            <div class="mask">
+                <div class="caption">とじる</div>
+            </div>
         </div>
     </div>
 
