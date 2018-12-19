@@ -31,10 +31,11 @@ $ ->
     $ ->
         #ボトルにマウスを乗せたら
         $('input#send').hover (->
-            $('.message-wrap .textbox').addClass('hover')
-            $('input#send')
-                .addClass('hover')
-                .addClass('swing')
+            if $('input#send').css('opacity') != '0'
+                $('.message-wrap .textbox').addClass('hover')
+                $('input#send')
+                  .addClass('hover')
+                  .addClass('swing')
             return
         ), ->
             $('input#send').removeClass('swing')
@@ -52,7 +53,9 @@ $ ->
                 .addClass('hidden')  # テキストエリアを非表示
                 .removeClass('hover')
             $('.icon-wrap #write .caption').html("かく")  # アイコンの文字をかくに
-            $('input#send').removeClass('hover')
+            $('input#send') # ボトルのアイコンを消す
+                .removeClass('hover')
+                .css("cursor","initial");
         else
             # 表示に切り替え
             if $('.all-message').css('display') == 'block'
@@ -65,6 +68,8 @@ $ ->
                 .addClass('display')    # テキストエリアを表示
                 .focus()                # テキストエリアを選択状態にする
             $('.icon-wrap #write .caption').html("とじる") # アイコンの文字をとじるに
+            $('.icon-wrap #bag .caption').html("みる")  # アイコンの文字をみるに
+            $('input#send').css("cursor","pointer");    # ボトルにカーソルをあわせた時
         return
 
     # かばんボタンをクリックした時、表示・非表示切り替え
@@ -74,11 +79,14 @@ $ ->
                 $('.message-wrap .textbox')
                     .removeClass('display')
                     .addClass('hidden')
+                $('.icon-wrap #write .caption').html("かく")  # アイコンの文字をかくに
                 $("#message").css("box-shadow","");
                 $(".error").css('visibility', 'hidden');
             $('.all-message').fadeIn();
+            $('.icon-wrap #bag .caption').html("とじる")  # アイコンの文字をとじるに
         else
             $('.all-message').fadeOut();
+            $('.icon-wrap #bag .caption').html("みる")  # アイコンの文字をみるに
         return
 
     # 未読アイコン(赤)をクリックした時
