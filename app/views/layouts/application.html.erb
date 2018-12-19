@@ -21,7 +21,7 @@
           <% unless user_signed_in? %>
             <a href="/"><%= image_tag("logo.png") %></a>
           <% else %>
-            <a href="/home/main"><%= image_tag("logo.png") %></a>
+            <a href="/home/main" data-turbolinks="false"><%= image_tag("logo.png") %></a>
           <% end %>
         <% end %>
       </div>
