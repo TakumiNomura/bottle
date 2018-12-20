@@ -32,6 +32,7 @@ input[type=number]::-webkit-outer-spin-button {
 // テキストエリアに予め表示される文字の色
 ::-webkit-input-placeholder { color: #D0D8E2; }
 
+// PCやスマートフォンごとの改行
 br.sp, br.pc{
     display: none;
 }
@@ -43,6 +44,272 @@ br.sp, br.pc{
 @media screen and (min-width: 960px) {
     br.pc{
         display: block;
+    }
+}
+
+/*
+    ヘッダー
+*/
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px;
+
+    .header-logo{
+        img{
+            height: 35px;
+            transition: .4s;
+        }
+        img:hover{
+            opacity: 0.7;
+        }
+    }
+    .header-menu{
+        margin-right: 5%;
+
+        a{
+            color: #5E91CD;
+            margin: 0px 30px;
+            text-decoration: none;
+            transition: .4s;
+        }
+        a:hover{
+            opacity: 0.7;
+        }
+    }
+    // スマホ用のメニュー
+    .navToggle {
+        display: block;
+        position: absolute;
+        right: 13px;
+        top: 16px;
+        width: 42px;
+        height: 36px;
+        cursor: pointer;
+        z-index: 3;
+        background: transparent;
+        text-align: center;
+
+        span {
+            display: block;
+            position: absolute;
+            width: 30px;
+            border-bottom: solid 3px #bbb;
+            -webkit-transition: .35s ease-in-out;
+            -moz-transition: .35s ease-in-out;
+            transition: .35s ease-in-out;
+            left: 6px;
+        }
+        span:nth-child(1) { top: 9px; }
+        span:nth-child(2) { top: 18px; }
+        span:nth-child(3) { top: 27px; }
+    }
+
+    /* 最初のspanをマイナス45度に */
+    /* 2番目と3番目のspanを45度に */
+    .navToggle.active{
+        span:nth-child(1) {
+            top: 18px;
+            left: 6px;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+        span:nth-child(2), span:nth-child(3) {
+            top: 18px;
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    }
+
+    nav.globalMenuSp {
+        position: absolute;
+        z-index: 999;
+        top: 68px;
+        left: 0;
+        background: #fff;
+        color: #000;
+        transform: translateX(110%);
+        text-align: center;
+        transition: all 0.6s;
+        width: 100%;
+
+        ul {
+            background: #fff;
+            margin: 0 auto;
+            padding: 0;
+            width: 100%;
+
+            li {
+                font-size: 1.1em;
+                list-style-type: none;
+                padding: 0;
+                width: 100%;
+                border-bottom: 1px dotted #888;
+                transform: translateX(110%);
+
+                a {
+                    display: block;
+                    color: #5E91CD;
+                    padding: 1em 0;
+                    text-decoration: none;
+                }
+            }
+            li:last-child {
+                padding-bottom: 0;
+                border-bottom: none;
+            }
+        }
+    }
+    // メニュー表示
+    nav.globalMenuSp.active {
+        transform: translateX(0%);
+        box-shadow: 1px 0px 10px #aaa;
+
+        ul{
+            li:nth-child(1) {
+                transition: all 0.6s 0s;
+                transform: translateX(0%);
+            }
+            li:nth-child(2) {
+                transition: all 0.6s 0.1s;
+                transform: translateX(0%);
+            }
+        }
+    }
+
+    // スマホ向けヘッダー
+    @media screen and (max-width: 767px) {
+        .header-logo{
+            height: auto;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-left: 0px;
+
+            img{
+                height: 30px;
+            }
+        }
+        .header-menu{
+            display: none;
+        }
+    }
+
+    /* PCやタブレットではハンバーガーメニューを非表示 */
+    @media screen and (min-width: 768px) {
+        .navToggle, nav.globalMenuSp{
+            display: none;
+        }
+    }
+}
+
+/*
+    トップページ
+*/
+.top-visual{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    .main-view{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 500px;
+        height: 200px;
+        text-align: center;
+        margin: 50px auto;
+        position: relative;
+        top: 30%;
+
+        .copy{
+            color: #5E91CD;
+            font-family: 'Hiragino Mincho Pro';
+            font-weight: 300;
+            font-size: 24px;
+        }
+    }
+    .back-img{
+        height: 200px;
+    }
+    img#cat{
+        height: 120px;
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    @media screen and (max-width: 767px) {
+        .main-view{
+            margin: 0px auto;
+        }
+        img#cat{
+            height: 100px;
+            position: absolute;
+            top: 75%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}
+
+.main-view .button, .howto .button{
+    text-align: center;
+    width: 400px;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    font-size: 20px;
+    transition: .4s;
+    background-color: #5E91CD;
+    color: #fff;
+    cursor: pointer;
+}
+
+.howto .button{
+    margin: 30px auto;
+}
+
+.main-view .button:hover, .howto .button:hover{
+    opacity: 0.8;
+}
+
+.main-view .button a, .howto .button a{
+    color: #FFF;
+    text-decoration: none;
+    width: auto;
+    display: block;
+    padding: 15px 20px;
+}
+
+// スマホ向け
+@media screen and (max-width: 767px) {
+    .top-visual{
+        flex-direction: column-reverse;
+        margin-top: 10vh;
+    }
+    .main-view{
+        left: 50%;
+        width: 100vw;
+        transform: translateX(-50%);
+        height: 200px;
+
+        .copy p{
+            font-size: 18px;
+        }
+        .button#howto{
+            display: block;
+        }
+    }
+    .main-view .button, .howto .button{
+        width: 100%;
+    }
+    .howto .button a{
+        width: auto;
     }
 }
 
@@ -99,168 +366,6 @@ br.sp, br.pc{
     }
 }
 
-/* ヘッダー */
-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 20px;
-
-    .header-logo{
-        img{
-            height: 35px;
-            transition: .4s;
-        }
-        img:hover{
-            opacity: 0.7;
-        }
-    }
-    .header-menu{
-        margin-right: 5%;
-
-        a{
-            color: #5E91CD;
-            margin: 0px 30px;
-            text-decoration: none;
-            transition: .4s;
-        }
-        a:hover{
-            opacity: 0.7;
-        }
-    }
-
-    // スマホ向けヘッダー
-    @media screen and (max-width: 767px) {
-        .header-logo{
-            height: auto;
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-left: 0px;
-
-            img{
-                height: 30px;
-            }
-        }
-        .header-menu{
-            display: none;
-        }
-    }
-}
-
-/* トップページ */
-.top-visual{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-
-    img#cat{
-        height: 120px;
-        position: absolute;
-        top: 70%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    @media screen and (max-width: 767px) {
-        img#cat{
-            height: 100px;
-            position: absolute;
-            top: 75%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-    }
-
-    /* コンパクトスマホ用 */
-    @media screen and (max-width: 767px) and (max-height: 700px) {
-        img#cat{
-            height: 75px;
-            top: 70%;
-        }
-    }
-}
-
-.main-view{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 500px;
-    height: 300px;
-    text-align: center;
-    margin: 50px auto;
-    position: relative;
-    top: 30%;
-
-    .copy{
-        color: #5E91CD;
-        font-family: 'Hiragino Mincho Pro';
-        font-weight: 300;
-        font-size: 24px;
-    }
-
-    .button#howto{
-        display: none;
-    }
-}
-
-.main-view .button, .howto .button{
-    text-align: center;
-    width: 400px;
-    margin-bottom: 20px;
-    border-radius: 2px;
-    font-size: 20px;
-    font-family: 'Arial Hebrew';
-    transition: .4s;
-    background-color: #5E91CD;
-    color: #fff;
-    cursor: pointer;
-}
-
-.howto .button{
-    margin: 30px auto;
-}
-
-.main-view .button:hover, .howto .button:hover{
-    opacity: 0.8;
-}
-
-.main-view .button a, .howto .button a{
-    color: #FFF;
-    text-decoration: none;
-    width: auto;
-    display: block;
-    padding: 15px 20px;
-}
-
-// スマホ向け
-@media screen and (max-width: 767px) {
-    .top-visual{
-        flex-direction: column-reverse;
-        margin-top: 10vh;
-    }
-    .main-view{
-        left: 50%;
-        width: 100vw;
-        transform: translateX(-50%);
-        height: 200px;
-
-        .copy p{
-            font-size: 18px;
-        }
-        .button#howto{
-            display: block;
-        }
-    }
-    .main-view .button, .howto .button{
-        width: 100%;
-    }
-    .howto .button a{
-        width: auto;
-    }
-}
-
 /* メインページ */
 .contents-wrap{
     position: relative;
@@ -268,7 +373,6 @@ header{
 }
 .message-wrap{
     color: #fff;
-    font-family: Hiragino Sans;
     margin: 0 auto;
     width: 650px;
     display: flex;
@@ -607,7 +711,6 @@ input#send.swing{
         p#delete{
             display: block;
             color: #D45D87;
-            font-family: 'Hiragino Sans';
             font-weight: 700;
             transition: .2s;
             z-index: 5;
@@ -1012,7 +1115,6 @@ div.replyed p{
 .howto h1, .about h1{
     border-left: 4px solid #5E91CD;
     padding-left: 10px;
-    font-family: 'Hiragino Sans';
     font-weight: 300;
 }
 .howto{
