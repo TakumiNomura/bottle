@@ -29,6 +29,15 @@
           <%=link_to "あばうと", "/home/about", :id => "about"%>
           <%=link_to "はうとぅ", "/home/howto", :id => "howto"%>
       </div>
+      <div class="navToggle">
+          <span></span><span></span><span></span>
+      </div>
+      <nav class="globalMenuSp">
+          <ul>
+              <li><%=link_to "あばうと", "/home/about", :id => "about", data: {"turbolinks" => false}%></li>
+              <li><%=link_to "はうとぅ", "/home/howto", :id => "howto", data: {"turbolinks" => false}%></li>
+          </ul>
+      </nav>
     </header>
     <%= yield %>
   </body>

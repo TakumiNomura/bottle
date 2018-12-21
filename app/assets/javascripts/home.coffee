@@ -28,18 +28,25 @@ $ ->
         # form.append message
         return
 
-    $ ->
-        #ボトルにマウスを乗せたら
-        $('input#send').hover (->
-            if $('input#send').css('opacity') != '0'
-                $('.message-wrap .textbox').addClass('hover')
-                $('input#send')
-                  .addClass('hover')
-                  .addClass('swing')
-            return
-        ), ->
-            $('input#send').removeClass('swing')
-            return
+    # ボトルにマウスを乗せたら
+    $('input#send').hover (->
+        if $('input#send').css('opacity') != '0'
+            $('.message-wrap .textbox').addClass('hover')
+            $('input#send')
+              .addClass('hover')
+              .addClass('swing')
+        return
+    ), ->
+        $('input#send').removeClass('swing')
+        return
+
+    # ヘッダーのメニューアイコンをクリックしたら
+    $('.navToggle').click ->
+        $(this).toggleClass 'active'
+        if $(this).hasClass('active')
+            $('.globalMenuSp').addClass 'active'
+        else
+            $('.globalMenuSp').removeClass 'active'
         return
 
     messageid = ''  # 返信できたメッセージID格納用
@@ -61,6 +68,7 @@ $ ->
             if $('.all-message').css('display') == 'block'
                 # 手持ちメッセージを表示してる時は消す
                 $('.all-message').fadeOut()
+            $('.navToggle, .globalMenuSp').removeClass 'active' # ヘッダーメニューが出ていたときは消す
             $("#message").css("box-shadow","")      # エラー枠が出ていたときは消す
             $(".error").css('visibility', 'hidden') # エラー文が出ていた時は消す
             $('.message-wrap .textbox')
@@ -80,9 +88,10 @@ $ ->
                     .removeClass('display')
                     .addClass('hidden')
                 $('.icon-wrap #write .caption').html("かく")  # アイコンの文字をかくに
-                $("#message").css("box-shadow","");
-                $(".error").css('visibility', 'hidden');
-            $('.all-message').fadeIn();
+                $("#message").css("box-shadow","")      # エラー枠が出ていたときは消す
+                $(".error").css('visibility', 'hidden') # エラー文が出ていた時は消す
+            $('.navToggle, .globalMenuSp').removeClass 'active' # ヘッダーメニューが出ていたときは消す
+            $('.all-message').fadeIn(); # メッセージ一覧を表示
             $('.icon-wrap #bag .caption').html("とじる")  # アイコンの文字をとじるに
         else
             $('.all-message').fadeOut();
