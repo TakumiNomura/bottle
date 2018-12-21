@@ -759,14 +759,6 @@ input#send.swing{
     div.message:hover {
         transform: scale(1);
     }
-    .send-info{
-        width: 90vw;
-        padding: 15px;
-        position: fixed;
-        top: 10%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
 }
 
 // 通知
@@ -782,6 +774,18 @@ input#send.swing{
     max-height: 50vh;
     z-index: 2;
     border-radius: 4px;
+}
+
+// スマホ向け
+@media screen and (max-width: 767px) {
+    .send-info{
+        width: 90vw;
+        padding: 15px;
+        position: fixed;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 // 未読アイコン
